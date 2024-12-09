@@ -63,7 +63,7 @@ export const theme = createTheme({
   primaryColor: "primary",
   radius: {
     sm: "0.35rem",
-    md: "0.55rem",
+    md: "0.75rem",
     lg: "1rem",
     xl: "2rem",
   },
@@ -136,6 +136,7 @@ export const theme = createTheme({
     Button: Button.extend({
       defaultProps: {
         fw: 400,
+        size: "md",
       },
     }),
   },

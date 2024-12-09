@@ -5,6 +5,7 @@ import Login from "./app/auth/login/page"
 import AuthLayout from "./app/auth/layout"
 import OTP from "./app/auth/otp/page"
 import ResetPassword from "./app/auth/reset-password/page"
+import { DashboardLayout } from "./app/dashboard/layout"
 
 const Router = () => {
   return (
@@ -16,6 +17,10 @@ const Router = () => {
             <Route path="login" element={<Login />} />
             <Route path="otp" element={<OTP />} />
             <Route path="reset-password" element={<ResetPassword />} />
+          </Route>
+
+          <Route path="dashboard" element={<DashboardLayout />}>
+            <Route index element={<div>dashboard</div>} />
           </Route>
         </Route>
       </Routes>
