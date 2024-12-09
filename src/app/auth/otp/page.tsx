@@ -30,7 +30,7 @@ const OTP = () => {
       console.log("🚀 ~ onSubmit ~ response:", response)
       const user = response.data.data
       localStorage.setItem(LOCALSTORAGE_SESSION_KEY, JSON.stringify(user))
-      navigate("/auth/dashboard")
+      navigate("/dashboard")
     } catch (error) {
       handleFormError(error, form)
     }

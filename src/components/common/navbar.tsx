@@ -47,8 +47,8 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
     <AppShell.Navbar withBorder={false} p="lg">
       <Stack gap={"xl"} justify="space-between" flex={1}>
         <Stack gap={"xl"}>
-          <AppShell.Section>
-            <Group className="" justify="center">
+          <AppShell.Section visibleFrom="md">
+            <Group justify="center">
               <img className="h-16" src={horizontalLogo} alt="logo " />
             </Group>
           </AppShell.Section>

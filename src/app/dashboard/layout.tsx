@@ -3,6 +3,7 @@ import Navbar from "@/components/common/navbar"
 import { AppShell, Box, useMatches } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 import { Outlet } from "react-router"
+import ProtectedRoute from "./components/protct-routes"
 
 export function DashboardLayout() {
   const [opened, { toggle }] = useDisclosure()
@@ -23,6 +24,7 @@ export function DashboardLayout() {
       <Navbar toggle={toggle} />
       <AppShell.Main>
         <Box p={{ md: "lg" }} pt={"lg"}>
+          <ProtectedRoute />
           <Outlet />
         </Box>
       </AppShell.Main>
