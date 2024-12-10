@@ -1,7 +1,10 @@
 {
   "global": {
     "logout-button": "تسجيل الخروج",
-    "errors": { "serverError": "حصل خطأ في الاتصال بالسيرفر" }
+    "errors": { "serverError": "حصل خطأ في الاتصال بالسيرفر" },
+    "search": "البحث",
+    "filters": "فلترة",
+    "export": "تصدير "
   },
   "login": {
     "title": "قم بتسجيل الدخول الى حسابك",
@@ -56,6 +59,26 @@
       "financial": "الإدارة المالية",
       "permeations": "الصلاحيات وفريق العمل",
       "manage-site": "إدارة الموقع"
+    }
+  },
+  "coupons": {
+    "title": "الخصومات والعروض الترويجية",
+    "add-button": "اضافة جديد",
+    "table": {
+      "name": "المعرف",
+      "code": "الرمز",
+      "discount": "نسبة الخصم (٪)",
+      "used-by": "عدد الاستخدامات",
+      "start-date": "تاريخ البدء",
+      "end-date": "تاريخ الانتهاء",
+      "status": "الحالة",
+      "is-active": "التفعيل",
+      "more": "المزيد",
+      "status-label": {
+        "active": "فعال",
+        "inactive": "غير نشط",
+        "expired": "منتهي الصلاحية"
+      }
     }
   }
 }

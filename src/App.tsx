@@ -1,7 +1,11 @@
+import { DirectionProvider } from "@mantine/core"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+import { NuqsAdapter } from "nuqs/adapters/react-router"
 import { useTranslation } from "react-i18next"
 import Router from "./router"
-import { DirectionProvider } from "@mantine/core"
 
+const queryClient = new QueryClient()
 function App() {
   const { i18n } = useTranslation()
   const dir = i18n.dir()
@@ -9,7 +13,13 @@ function App() {
 
   return (
     <DirectionProvider initialDirection={dir} detectDirection>
-      <Router />
+      <QueryClientProvider client={queryClient}>
+        <NuqsAdapter>
+          <Router />
+        </NuqsAdapter>
+
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </DirectionProvider>
   )
 }

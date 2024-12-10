@@ -6,7 +6,7 @@ const baseURL = "https://api.inaash.edu.sa"
 
 // Create an Axios instance
 const InaashApi = axios.create({
-  baseURL: baseURL,
+  baseURL: baseURL + "/admin",
 })
 // Create an Axios instance
 export const InaashApiGuest = axios.create({

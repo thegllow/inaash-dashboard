@@ -26,7 +26,7 @@ const OTP = () => {
   const navigate = useNavigate()
   const onSubmit = form.handleSubmit(async (data) => {
     try {
-      const response = await InaashApiGuest.post<LoginResponse>("/admin/otpVerify", { ...data, email })
+      const response = await InaashApiGuest.post<LoginResponse>("/otpVerify", { ...data, email })
       console.log("🚀 ~ onSubmit ~ response:", response)
       const user = response.data.data
       localStorage.setItem(LOCALSTORAGE_SESSION_KEY, JSON.stringify(user))

@@ -9,7 +9,7 @@ export type SuccessResponse<T> = {
   status: true
   message: string
   data: {
-    item: T
+    items: T
   }
   guard: string
   errors: null

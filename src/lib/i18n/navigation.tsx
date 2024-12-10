@@ -9,7 +9,7 @@ import {
   useLocation,
   useNavigate as useReactRouterNavigate,
   type LinkProps,
-} from "react-router"
+} from "react-router-dom"
 import React, { RefAttributes } from "react"
 import { LOCALES } from "../../config"
 import { ForwardRefExoticComponent } from "react"
@@ -23,19 +23,18 @@ export const useParams = () => {
   }
   return params
 }
-export const Link: ForwardRefExoticComponent<
-  LinkProps & RefAttributes<HTMLAnchorElement>
-> = React.forwardRef(function Comp({ to, ...props }, ref) {
-  const { locale } = useParams()
-  return <ReactRouterLink ref={ref} to={`/${locale}${to}`} {...props} />
-})
+export const Link: ForwardRefExoticComponent<LinkProps & RefAttributes<HTMLAnchorElement>> = React.forwardRef(
+  function Comp({ to, ...props }, ref) {
+    const { locale } = useParams()
+    return <ReactRouterLink ref={ref} to={`/${locale}${to}`} {...props} />
+  },
+)
 
-export const NavLink: React.ForwardRefExoticComponent<
-  NavLinkProps & React.RefAttributes<HTMLAnchorElement>
-> = React.forwardRef(function Comp({ to, ...props }, ref) {
-  const { locale } = useParams()
-  return <ReactRouterNavLink ref={ref} to={`/${locale}${to}`} {...props} />
-})
+export const NavLink: React.ForwardRefExoticComponent<NavLinkProps & React.RefAttributes<HTMLAnchorElement>> =
+  React.forwardRef(function Comp({ to, ...props }, ref) {
+    const { locale } = useParams()
+    return <ReactRouterNavLink ref={ref} to={`/${locale}${to}`} {...props} />
+  })
 export const Navigate = ({ to, ...props }: NavigateProps) => {
   const { locale } = useParams()
   return <ReactRouterNavigate to={`/${locale}${to}`} {...props} />

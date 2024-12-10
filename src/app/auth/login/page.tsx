@@ -22,7 +22,7 @@ const Login = () => {
   const navigate = useNavigate()
   const onSubmit = form.handleSubmit(async (data) => {
     try {
-      const response = await InaashApiGuest.post("/admin/loginRegisterResendOtp", data)
+      const response = await InaashApiGuest.post("/loginRegisterResendOtp", data)
       console.log("🚀 ~ onSubmit ~ response:", response)
       navigate(`/auth/otp?email=${encodeURI(data.email)}`)
     } catch (error) {

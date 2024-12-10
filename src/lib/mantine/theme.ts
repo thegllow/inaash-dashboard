@@ -9,6 +9,7 @@ import {
   Table,
   TableTd,
   TableTh,
+  TableThead,
   TextInput,
 } from "@mantine/core"
 
@@ -58,6 +59,7 @@ export const theme = createTheme({
     secondary,
     gray,
   },
+
   fontFamily: "MyCustomFont, san-serf",
   fontFamilyMonospace: "Monaco, Courier, monospace",
   primaryColor: "primary",
@@ -76,6 +78,11 @@ export const theme = createTheme({
         verticalSpacing: "sm",
       },
     }),
+    TableThead: TableThead.extend({
+      defaultProps: {
+        bg: "gray.1",
+      },
+    }),
     TableTh: TableTh.extend({
       defaultProps: {
         fw: 400,
@@ -89,8 +96,9 @@ export const theme = createTheme({
     Badge: Badge.extend({
       defaultProps: {
         size: "md",
-        radius: "sm",
-        fw: 400,
+        radius: "xl",
+        variant: "light",
+        fw: 600,
       },
     }),
     Menu: Menu.extend({
@@ -106,6 +114,14 @@ export const theme = createTheme({
     Input: Input.extend({
       defaultProps: {
         size: "md",
+        // classNames(theme, props, ctx) {
+        //   const isFilled = props.variant === "filled"
+        //   if (!isFilled) return {}
+
+        //   return {
+        //     input: "!bg-white",
+        //   }
+        // },
       },
     }),
     TextInput: TextInput.extend({

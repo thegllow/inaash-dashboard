@@ -33,7 +33,7 @@ const Header = ({ opened, toggle }: { opened: boolean; toggle: () => void }) => 
             ]}
           />
           <Indicator color="red">
-            <Bell />
+            <Bell size={20} />
           </Indicator>
         </Group>
       </Group>
