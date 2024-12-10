@@ -18,7 +18,7 @@ import { ForwardRefExoticComponent } from "react"
 export const useParams = () => {
   const params = uesReactRouterParams()
   const allowedLocales = LOCALES
-  if (params.locale && !allowedLocales.includes(params.locale as "ar" | "en")) {
+  if (!params.locale || !allowedLocales.includes(params.locale as "ar" | "en")) {
     return { ...params, locale: "ar" }
   }
   return params

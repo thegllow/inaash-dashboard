@@ -38,7 +38,7 @@ const TableCom = () => {
   const { t } = useTranslation()
 
   const [searchParams] = useSearchParams()
-  console.log("🚀 ~ TableCom ~ searchParams:", searchParams)
+  console.log("🚀 ~ TableCom ~ searchParams:", searchParams.get("statuses"))
 
   const { data, status, error } = useQuery({
     queryKey: ["coupons", searchParams.toString()],
@@ -65,7 +65,7 @@ const TableCom = () => {
           <Table.Tbody>
             {status === "error" ? <Error error={error} /> : null}
             {status === "success"
-              ? data.items.data.map((coupon) => (
+              ? data.data.items.data.map((coupon) => (
                   <Table.Tr key={coupon.id}>
                     <Table.Td>{coupon.name}</Table.Td>
                     <Table.Td>{coupon.code}</Table.Td>
@@ -98,7 +98,7 @@ const TableCom = () => {
           </Table.Tbody>
         </Table>
       </Table.ScrollContainer>
-      <PaginationCom last_page={data?.items.meta.last_page} />
+      <PaginationCom last_page={data?.data?.items.meta.last_page} />
     </>
   )
 }

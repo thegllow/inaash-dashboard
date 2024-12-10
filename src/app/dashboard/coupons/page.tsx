@@ -1,9 +1,11 @@
 import SearchInput from "@/components/ui/search-input"
 import { Link } from "@/lib/i18n/navigation"
 import { Button, Group, Space, Stack, Title } from "@mantine/core"
-import { CloudDownload, SlidersHorizontal } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import TableCom from "./components/table"
+import Filters from "./components/filters"
+import ExportButton from "@/components/common/export-button"
+import { GetCoupons } from "./get-coupons"
 
 const Coupons = () => {
   const { t } = useTranslation()
@@ -22,22 +24,8 @@ const Coupons = () => {
       <Group justify="space-between" gap={"lg"}>
         <SearchInput />
         <Group>
-          <Button
-            variant="white"
-            className="!border !border-gray-300"
-            color="gray.9"
-            size="sm"
-            leftSection={<CloudDownload size={20} />}>
-            {t("global.export")}
-          </Button>
-          <Button
-            variant="white"
-            className="!border !border-gray-300"
-            color="gray.9"
-            size="sm"
-            leftSection={<SlidersHorizontal size={20} />}>
-            {t("global.filters")}
-          </Button>
+          <ExportButton queryFun={GetCoupons} />
+          <Filters />
         </Group>
       </Group>
       <TableCom />

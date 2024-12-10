@@ -85,7 +85,7 @@ export const theme = createTheme({
     }),
     TableTh: TableTh.extend({
       defaultProps: {
-        fw: 400,
+        fw: 600,
       },
     }),
     TableTd: TableTd.extend({

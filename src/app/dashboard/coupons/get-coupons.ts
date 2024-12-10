@@ -5,5 +5,5 @@ export const GetCoupons = async (params: URLSearchParams) => {
   const response = await InaashApi.get<CouponsResponse>(`/coupons`, {
     params,
   })
-  return response.data.data
+  return response.data
 }
