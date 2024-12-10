@@ -13,7 +13,7 @@ const Filters = () => {
   }
   const [state, setState] = useState<string[]>(filters)
   return (
-    <Popover width={200} position="bottom" withArrow shadow="md">
+    <Popover width={200} position="bottom" withArrow>
       <Popover.Target>
         <Button
           variant="white"
@@ -24,13 +24,14 @@ const Filters = () => {
           {t("global.filters")}
         </Button>
       </Popover.Target>
-      <Popover.Dropdown>
+      <Popover.Dropdown className="!border-none">
         <Stack>
           <Checkbox.Group value={state} onChange={setState} label={t("coupons.table.status")}>
             <Stack mt="xs">
               {couponStatus.map((status) => (
                 <Checkbox
                   radius={"sm"}
+                  color="secondary"
                   value={status}
                   label={t(`coupons.table.status-label.${status.toLocaleLowerCase() as "active"}`)}
                 />

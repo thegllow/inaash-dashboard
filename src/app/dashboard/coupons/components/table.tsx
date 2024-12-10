@@ -1,13 +1,25 @@
-import { ActionIcon, Badge, Box, Table, TableTh, TableThead } from "@mantine/core"
+import {
+  ActionIcon,
+  Badge,
+  Box,
+  Button,
+  Popover,
+  Stack,
+  Table,
+  TableTh,
+  TableThead,
+  Text,
+} from "@mantine/core"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import { useTranslation } from "react-i18next"
 import { GetCoupons } from "../get-coupons"
 import { useSearchParams } from "react-router"
 import Error from "@/components/common/error"
 import dayjs from "dayjs"
-import { MoreVertical } from "lucide-react"
+import { ChartNoAxesCombined, MoreVertical, User } from "lucide-react"
 import Loader from "@/components/common/loader"
 import PaginationCom from "@/components/common/pagination"
+import { Link } from "@/lib/i18n/navigation"
 const tableHead = [
   "name",
   "code",
@@ -88,9 +100,37 @@ const TableCom = () => {
                     </Table.Td>
                     <Table.Td>{coupon.type}</Table.Td>
                     <Table.Td>
-                      <ActionIcon variant="subtle" color="gray" aria-label="Settings">
-                        <MoreVertical />
-                      </ActionIcon>
+                      <Popover width={170} shadow="lg" position="left-start">
+                        <Popover.Target>
+                          <ActionIcon variant="subtle" color="gray" aria-label="Settings">
+                            <MoreVertical />
+                          </ActionIcon>
+                        </Popover.Target>
+                        <Popover.Dropdown className="!border-none">
+                          <Stack gap={"xs"}>
+                            <Button
+                              variant="subtle"
+                              component={Link}
+                              to={`/dashboard/coupons/${coupon.id}`}
+                              color="black"
+                              size="md"
+                              justify="start"
+                              leftSection={<User size={20} />}>
+                              {t("global.details")}
+                            </Button>
+                            <Button
+                              variant="subtle"
+                              color="black"
+                              component={Link}
+                              to={`/dashboard/coupons/${coupon.id}/reports`}
+                              size="md"
+                              justify="start"
+                              leftSection={<ChartNoAxesCombined size={20} />}>
+                              {t("global.reports")}
+                            </Button>
+                          </Stack>
+                        </Popover.Dropdown>
+                      </Popover>
                     </Table.Td>
                   </Table.Tr>
                 ))
