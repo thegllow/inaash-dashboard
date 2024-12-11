@@ -32,7 +32,7 @@ const Router = () => {
               element={
                 <Suspense
                   fallback={
-                    <div className="flex h-full items-center justify-center">
+                    <div className="flex h-full items-center justify-center py-20">
                       <Loader size={"md"} />
                     </div>
                   }>

@@ -138,7 +138,10 @@
       "type": "نوع الخصم",
       "type-fixed": "ثابت",
       "type-percentage": "نسبة %",
-      "langs": " اللغة"
+      "langs": " اللغة",
+      "discount_amount": "إجمالي مبلغ الخصم",
+      "paid_amount_after_discount": "إجمالي المبلغ المدفوع بعد الخصم",
+      "paid_amount": "إجمالي المبلغ المدفوع"
     },
     "toggle-error": "تعذر تحديث حالة القسيمة"
   }

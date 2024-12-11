@@ -30,6 +30,7 @@ const ViewCoupon = () => {
 
   const { t } = useTranslation()
   const keysToRender = ["name", "code", "amount", "max_uses", "date_start", "date_end"] as const
+  const statisticsKeys = ["paid_amount_after_discount", "discount_amount", "paid_amount"] as const
   return (
     <Stack>
       <div className="rounded-lg bg-white ~p-3/5">
@@ -63,6 +64,20 @@ const ViewCoupon = () => {
           })}
         </SimpleGrid>
       </div>
+      <SimpleGrid cols={{ base: 1, md: 3 }}>
+        {statisticsKeys.map((key) => {
+          return (
+            <div key={key} className="space-y-3 rounded-lg bg-white ~p-3/4">
+              <Text size="sm" c={"gray.8"}>
+                {t(`coupons.view.${key}`)}
+              </Text>
+              <Text fw={"700"} size="lg">
+                SAR {coupon[key]}
+              </Text>
+            </div>
+          )
+        })}
+      </SimpleGrid>
     </Stack>
   )
 }

@@ -6,7 +6,7 @@ const AddCoupon = () => {
   const { t } = useTranslation()
   return (
     <Stack>
-      <Title order={2}>{t("coupons.title")}</Title>
+      <Title order={2}>{t("coupons.add.title")}</Title>
       <Space />
       <AddCouponForm />
     </Stack>
