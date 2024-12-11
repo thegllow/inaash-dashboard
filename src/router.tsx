@@ -10,6 +10,7 @@ import AddCoupon from "./app/dashboard/coupons/add/page"
 import React, { Suspense } from "react"
 import { Loader } from "@mantine/core"
 const ViewCoupon = React.lazy(async () => import("./app/dashboard/coupons/[id]/page"))
+const EditCoupon = React.lazy(async () => import("./app/dashboard/coupons/[id]/edit/page"))
 
 const Router = () => {
   return (
@@ -37,6 +38,19 @@ const Router = () => {
                     </div>
                   }>
                   <ViewCoupon />
+                </Suspense>
+              }
+            />
+            <Route
+              path=":id/edit"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="flex h-full items-center justify-center py-20">
+                      <Loader size={"md"} />
+                    </div>
+                  }>
+                  <EditCoupon />
                 </Suspense>
               }
             />

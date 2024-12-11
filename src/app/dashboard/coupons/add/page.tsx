@@ -1,6 +1,6 @@
 import { Space, Stack, Title } from "@mantine/core"
 import { useTranslation } from "react-i18next"
-import AddCouponForm from "./components/form"
+import AddEditCouponForm from "./components/form"
 
 const AddCoupon = () => {
   const { t } = useTranslation()
@@ -8,7 +8,7 @@ const AddCoupon = () => {
     <Stack>
       <Title order={2}>{t("coupons.add.title")}</Title>
       <Space />
-      <AddCouponForm />
+      <AddEditCouponForm />
     </Stack>
   )
 }

@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next"
 import { couponStatus } from "../components/table"
 import { GetCoupon } from "./get-coupon"
 import { Pen } from "lucide-react"
-import { Coupon } from "./types"
 import dayjs from "dayjs"
+import { Coupon } from "../types"
 
 const DataCell = ({ keyToRender, coupon }: { keyToRender: keyof Coupon; coupon: Coupon }) => {
   const { t } = useTranslation()
@@ -51,7 +51,7 @@ const ViewCoupon = () => {
           </Group>
           <ActionIcon
             component={Link}
-            to={`/dashboard/coupons/edit/${id}`}
+            to={`/dashboard/coupons/${id}/edit`}
             variant="subtle"
             size={"lg"}
             color="gray">

@@ -14,8 +14,10 @@ import { WEBSITE_LANGS } from "@/config"
 import { cn } from "@/utils/cn"
 import { z } from "zod"
 import { handleFormError } from "@/utils/handle-form-errors"
-import { PostAddCoupon } from "../post-add-coupon"
-
+import { PostAddCoupon } from "../add-coupon"
+import { type Coupon } from "../../types"
+import { PutUpdateCoupon } from "../../[id]/edit/update-coupon"
+import { useNavigate } from "react-router-dom"
 const Input = ({ name, ...props }: TextInputProps & { name: string }) => {
   const {
     control,
@@ -49,21 +51,22 @@ const Input = ({ name, ...props }: TextInputProps & { name: string }) => {
   )
 }
 
-const AddCouponForm = () => {
+const AddEditCouponForm = ({ coupon }: { coupon?: Coupon }) => {
+  const isUpdate = coupon ? true : false
   const { t } = useTranslation()
   const form = useForm<z.infer<typeof CouponSchema>>({
     resolver: zodResolver(CouponSchema),
     defaultValues: {
-      name: "", // Must be between 1 and 50 characters
-      code: "", // Unique coupon code (between 1-50 characters)
-      amount: 0, // Must be between 0 and 100000
-      video_ids: [], // Array of video IDs; ensure these IDs exist in your videos table
-      date_start: undefined, // Must be a valid date and after yesterday
-      date_end: undefined, // Must be after date_start and in the correct format
-      max_uses: 1, // Must be a number and max 100000
-      max_customer_uses: 1, // Number of uses per customer, must be less than 1000
-      type: "Percentage", // Must be one of the defined CouponType values
-      langs: [], // Must be one or more of the defined Lang values
+      name: coupon?.name || "", // Must be between 1 and 50 characters
+      code: coupon?.code || "", // Unique coupon code (between 1-50 characters)
+      amount: coupon?.amount ? Number(coupon.amount) : 0, // Must be between 0 and 100000
+      video_ids: coupon?.video_ids ? coupon.video_ids.map((e) => e + "") : [], // Array of video IDs; ensure these IDs exist in your videos table
+      date_start: coupon?.date_start ? new Date(coupon.date_start) : undefined, // Must be a valid date and after yesterday
+      date_end: coupon?.date_end ? new Date(coupon.date_end) : undefined, // Must be after date_start and in the correct format
+      max_uses: coupon?.max_uses ? Number(coupon.max_uses) : 1, // Must be a number and max 100000
+      max_customer_uses: coupon?.max_customer_uses ? Number(coupon.max_customer_uses) : 1, // Number of uses per customer, must be less than 1000
+      type: coupon?.type || "Percentage", // Must be one of the defined CouponType values
+      langs: coupon?.langs || [], // Must be one or more of the defined Lang values
     },
   })
 
@@ -80,12 +83,19 @@ const AddCouponForm = () => {
 
   const onSubmit = form.handleSubmit(async (data) => {
     try {
-      const response = await PostAddCoupon(data)
+      const response = isUpdate
+        ? await PutUpdateCoupon({ id: coupon!.id, ...data })
+        : await PostAddCoupon(data)
       console.log("🚀 ~ onSubmit ~ response:", response)
     } catch (error) {
       handleFormError(error, form)
     }
   })
+
+  const navigate = useNavigate()
+  const handleGoBack = () => {
+    navigate(-1)
+  }
   return (
     <FormProvider {...form}>
       <Stack component={"form"} onSubmit={onSubmit} w={"100%"}>
@@ -186,14 +196,14 @@ const AddCouponForm = () => {
                         radius="md"
                         value={lang}
                         className={cn(
-                          "data-checked:!bg-[#E8FAFA] data-checked:!border-secondary group !w-fit !border-gray-200 !bg-white !px-4 !py-2",
+                          "group !w-fit !border-gray-200 !bg-white !px-4 !py-2 data-checked:!border-secondary data-checked:!bg-[#E8FAFA]",
                         )}>
                         <Group wrap="nowrap" align="flex-start">
                           <Checkbox.Indicator
                             color="secondary"
-                            className="group-data-checked:!flex !hidden"
+                            className="!hidden group-data-checked:!flex"
                           />
-                          <Text className="group-data-checked:!text-secondary !text-gray-400" fw={500}>
+                          <Text className="!text-gray-400 group-data-checked:!text-secondary" fw={500}>
                             {t(`langs.${lang as "ar"}`)}
                           </Text>
                         </Group>
@@ -253,9 +263,23 @@ const AddCouponForm = () => {
         <DevTool control={control} placement="bottom-left" />
         <Space />
         <Stack gap={"sm"} align="end">
-          <Button type="submit" loading={isSubmitting} size="md" px={60}>
-            {t("coupons.add.form.save-button")}
-          </Button>
+          <Group justify="end">
+            {isUpdate && (
+              <Button
+                onClick={handleGoBack}
+                type="button"
+                color="gray"
+                variant="outline"
+                loading={isSubmitting}
+                size="md"
+                px={60}>
+                {t("coupons.add.form.cancel-button")}
+              </Button>
+            )}
+            <Button type="submit" loading={isSubmitting} size="md" px={60}>
+              {t("coupons.add.form.save-button")}
+            </Button>
+          </Group>
           {errors.root ? (
             <Text size="sm" c="red">
               {errors.root.message}
@@ -267,4 +291,4 @@ const AddCouponForm = () => {
   )
 }
 
-export default AddCouponForm
+export default AddEditCouponForm

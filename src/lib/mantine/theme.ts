@@ -130,7 +130,6 @@ export const theme = createTheme({
         styles: {
           label: {
             fontWeight: 400,
-            color: "#5A5A5A",
             marginBottom: "6px",
           },
         },

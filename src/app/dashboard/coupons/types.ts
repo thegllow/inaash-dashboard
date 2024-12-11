@@ -23,7 +23,7 @@ export interface Coupon {
   id: string
   name: string
   code: string
-  type: string
+  type: "Percentage" | "Fixed"
   amount: string
   date_start: Date
   date_end: Date
@@ -33,7 +33,7 @@ export interface Coupon {
   paid_amount: string
   paid_amount_after_discount: string
   discount_amount: string
-  status: string
+  status: "Active" | "Inactive" | "Expired"
   deleted_at: null
   video_ids: number[]
   langs: string[]

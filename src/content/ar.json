@@ -116,6 +116,7 @@
         "langs-input-label": "اختر اللغة",
         "langs-input-placeholder": "اختر اللغة",
         "save-button": "حفظ",
+        "cancel-button": "الغاء",
         "errors": {
           "required": "هذا الحقل مطلوب",
           "invalidEmail": "الرجاء كتابة بريد الكتروني صالح",
@@ -124,6 +125,9 @@
           "invalidDate": "تاريخ غير صالح"
         }
       }
+    },
+    "edit": {
+      "title": "تعديل قسيمة"
     },
     "view": {
       "title": "تفاصيل القسيمة",

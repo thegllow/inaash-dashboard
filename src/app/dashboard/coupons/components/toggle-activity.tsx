@@ -22,7 +22,7 @@ const ToggleActivity = ({ coupon }: Props) => {
   const CouponToggledStatus = {
     Active: "Inactive",
     Inactive: "Active",
-  }
+  } as const
   const { mutate } = useMutation({
     mutationFn: PostToggleActivity,
     onMutate(variables) {
