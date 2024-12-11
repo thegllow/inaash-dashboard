@@ -9,6 +9,7 @@ import { ChartNoAxesCombined, MoreVertical, User } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router"
 import { GetCoupons } from "../get-coupons"
+import ToggleActivity from "./toggle-activity"
 const tableHead = [
   "name",
   "code",
@@ -20,7 +21,7 @@ const tableHead = [
   "is-active",
   "more",
 ] as const
-const couponStatus = {
+export const couponStatus = {
   Active: {
     label: "active",
     color: "green",
@@ -39,7 +40,6 @@ const TableCom = () => {
   const { t } = useTranslation()
 
   const [searchParams] = useSearchParams()
-  console.log("🚀 ~ TableCom ~ searchParams:", searchParams.get("statuses"))
 
   const { data, status, error } = useQuery({
     queryKey: ["coupons", searchParams.toString()],
@@ -66,7 +66,7 @@ const TableCom = () => {
           <Table.Tbody>
             {status === "error" ? <Error error={error} /> : null}
             {status === "success"
-              ? data.data.items.data.map((coupon) => (
+              ? data.data.map((coupon) => (
                   <Table.Tr key={coupon.id}>
                     <Table.Td>{coupon.name}</Table.Td>
                     <Table.Td>{coupon.code}</Table.Td>
@@ -87,7 +87,9 @@ const TableCom = () => {
                         )}
                       </Badge>
                     </Table.Td>
-                    <Table.Td>{coupon.type}</Table.Td>
+                    <Table.Td>
+                      {coupon.status === "Expired" ? null : <ToggleActivity coupon={coupon} />}
+                    </Table.Td>
                     <Table.Td>
                       <Popover width={170} shadow="lg" position="left-start">
                         <Popover.Target>
@@ -95,24 +97,24 @@ const TableCom = () => {
                             <MoreVertical />
                           </ActionIcon>
                         </Popover.Target>
-                        <Popover.Dropdown className="!border-none">
+                        <Popover.Dropdown className="!border-none" p="xs">
                           <Stack gap={"xs"}>
                             <Button
                               variant="subtle"
+                              size="sm"
                               component={Link}
                               to={`/dashboard/coupons/${coupon.id}`}
                               color="black"
-                              size="md"
                               justify="start"
                               leftSection={<User size={20} />}>
                               {t("global.details")}
                             </Button>
                             <Button
                               variant="subtle"
+                              size="sm"
                               color="black"
                               component={Link}
                               to={`/dashboard/coupons/${coupon.id}/reports`}
-                              size="md"
                               justify="start"
                               leftSection={<ChartNoAxesCombined size={20} />}>
                               {t("global.reports")}
@@ -127,7 +129,7 @@ const TableCom = () => {
           </Table.Tbody>
         </Table>
       </Table.ScrollContainer>
-      <PaginationCom last_page={data?.data?.items.meta.last_page} />
+      <PaginationCom last_page={data?.meta.last_page} />
     </>
   )
 }

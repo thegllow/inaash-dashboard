@@ -7,6 +7,9 @@ import ResetPassword from "./app/auth/reset-password/page"
 import { DashboardLayout } from "./app/dashboard/layout"
 import Coupons from "./app/dashboard/coupons/page"
 import AddCoupon from "./app/dashboard/coupons/add/page"
+import React, { Suspense } from "react"
+import { Loader } from "@mantine/core"
+const ViewCoupon = React.lazy(async () => import("./app/dashboard/coupons/[id]/page"))
 
 const Router = () => {
   return (
@@ -24,6 +27,19 @@ const Router = () => {
           <Route path="coupons">
             <Route index element={<Coupons />} />
             <Route path="add" element={<AddCoupon />} />
+            <Route
+              path=":id"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="flex h-full items-center justify-center">
+                      <Loader size={"md"} />
+                    </div>
+                  }>
+                  <ViewCoupon />
+                </Suspense>
+              }
+            />
           </Route>
         </Route>
       </Route>
