@@ -5,7 +5,7 @@ import { Link } from "@/lib/i18n/navigation"
 import { ActionIcon, Badge, Box, Button, Popover, Stack, Table, TableTh, TableThead } from "@mantine/core"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import dayjs from "dayjs"
-import { ChartNoAxesCombined, MoreVertical, User } from "lucide-react"
+import { ChartNoAxesCombined, MoreVertical, Pen, User } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router"
 import { GetCoupons } from "../get-coupons"
@@ -118,6 +118,16 @@ const TableCom = () => {
                               justify="start"
                               leftSection={<ChartNoAxesCombined size={20} />}>
                               {t("global.reports")}
+                            </Button>
+                            <Button
+                              variant="subtle"
+                              size="sm"
+                              color="black"
+                              component={Link}
+                              to={`/dashboard/coupons/${coupon.id}/edit`}
+                              justify="start"
+                              leftSection={<Pen size={20} />}>
+                              {t("global.edit")}
                             </Button>
                           </Stack>
                         </Popover.Dropdown>
