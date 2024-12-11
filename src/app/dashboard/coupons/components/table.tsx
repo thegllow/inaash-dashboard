@@ -1,25 +1,14 @@
-import {
-  ActionIcon,
-  Badge,
-  Box,
-  Button,
-  Popover,
-  Stack,
-  Table,
-  TableTh,
-  TableThead,
-  Text,
-} from "@mantine/core"
-import { keepPreviousData, useQuery } from "@tanstack/react-query"
-import { useTranslation } from "react-i18next"
-import { GetCoupons } from "../get-coupons"
-import { useSearchParams } from "react-router"
 import Error from "@/components/common/error"
-import dayjs from "dayjs"
-import { ChartNoAxesCombined, MoreVertical, User } from "lucide-react"
 import Loader from "@/components/common/loader"
 import PaginationCom from "@/components/common/pagination"
 import { Link } from "@/lib/i18n/navigation"
+import { ActionIcon, Badge, Box, Button, Popover, Stack, Table, TableTh, TableThead } from "@mantine/core"
+import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import dayjs from "dayjs"
+import { ChartNoAxesCombined, MoreVertical, User } from "lucide-react"
+import { useTranslation } from "react-i18next"
+import { useSearchParams } from "react-router"
+import { GetCoupons } from "../get-coupons"
 const tableHead = [
   "name",
   "code",

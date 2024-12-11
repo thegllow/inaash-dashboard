@@ -4,6 +4,9 @@ import { AppShell, useMatches } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 import { Outlet } from "react-router"
 import ProtectedRoute from "./components/protct-routes"
+import { useQueryClient } from "@tanstack/react-query"
+import { getVideos } from "@/services/utils/get-videos"
+import { useEffect } from "react"
 
 export function DashboardLayout() {
   const [opened, { toggle }] = useDisclosure()
@@ -12,6 +15,15 @@ export function DashboardLayout() {
     md: "alt",
     sm: "default",
   }) as "alt" | "default"
+
+  const queryClient = useQueryClient()
+  // prefetch videos data
+  useEffect(() => {
+    queryClient.prefetchQuery({
+      queryKey: ["list", "videos"],
+      queryFn: getVideos,
+    })
+  }, [queryClient])
 
   return (
     <AppShell

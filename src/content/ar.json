@@ -9,6 +9,13 @@
     "details": "التفاصيل",
     "reports": "التقارير"
   },
+  "langs": {
+    "ar": "العربية",
+    "en": "English",
+    "fr": "Français",
+    "fil": "Tagalog",
+    "ur": "اُردُو"
+  },
   "login": {
     "title": "قم بتسجيل الدخول الى حسابك",
     "description": "مرحبا بعودتك! الرجاء ادخال بيانات التسجيل الخاصة بك",
@@ -81,6 +88,41 @@
         "active": "فعال",
         "inactive": "غير نشط",
         "expired": "منتهي الصلاحية"
+      }
+    },
+    "add": {
+      "title": "إضافة قسيمة جديدة",
+      "form": {
+        "name-input-label": "الاسم",
+        "name-input-placeholder": "اسم القسيمة",
+        "code-input-label": "الرمز",
+        "code-input-placeholder": "ادخل الرمز",
+        "amount-input-label": "قيمة الخصم",
+        "amount-input-placeholder": "قيمة الخصم",
+        "video_ids-input-label": "اختر البرنامج التدريبي",
+        "video_ids-input-placeholder": "اختر البرنامج التدريبي",
+        "date_start-input-label": "تاريخ البدء",
+        "date_start-input-placeholder": "تاريخ البدء",
+        "date_end-input-label": "تاريخ الإنتهاء",
+        "date_end-input-placeholder": "تاريخ الإنتهاء",
+        "max_uses-input-label": "إجمالي عدد الاستخدامات",
+        "max_uses-input-placeholder": "إجمالي عدد الاستخدامات",
+        "max_customer_uses-input-label": "عدد الاستخدامات لكل مستخدم",
+        "max_customer_uses-input-placeholder": "عدد الاستخدامات لكل مستخدم",
+        "type-input-label": "نوع الخصم",
+        "type-input-fixed-label": "ثابت",
+        "type-input-percentage-label": "نسبة %",
+        "type-input-placeholder": "نوع الخصم",
+        "langs-input-label": "اختر اللغة",
+        "langs-input-placeholder": "اختر اللغة",
+        "save-button": "حفظ",
+        "errors": {
+          "required": "هذا الحقل مطلوب",
+          "invalidEmail": "الرجاء كتابة بريد الكتروني صالح",
+          "largeNumber": "رقم كبير جدأ",
+          "smallNumber": "رقم صغير جدا",
+          "invalidDate": "تاريخ غير صالح"
+        }
       }
     }
   }

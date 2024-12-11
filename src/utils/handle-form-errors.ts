@@ -13,6 +13,7 @@ export const handleFormError = <T extends FieldValues>(error: unknown, form: Use
       for (const key in responseError.errors) {
         form.setError(key as Path<T>, {
           message: responseError.errors![key as keyof typeof responseError.errors]![0],
+          type: "custom",
         })
       }
     }

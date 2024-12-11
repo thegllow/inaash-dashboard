@@ -9,6 +9,9 @@ module.exports = {
   theme: {
     screens, // Tailwind's default screens, in `rem`
     fontSize, // Tailwind's default font sizes, in `rem` (including line heights)
+    data: {
+      checked: 'checked~="true"',
+    },
 
     extend: {
       screens: {

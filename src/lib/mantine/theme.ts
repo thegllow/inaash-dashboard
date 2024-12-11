@@ -133,7 +133,7 @@ export const theme = createTheme({
             marginBottom: "6px",
           },
         },
-        size: "lg",
+        size: "md",
       },
     }),
     PasswordInput: PasswordInput.extend({
@@ -145,7 +145,7 @@ export const theme = createTheme({
             marginBottom: "6px",
           },
         },
-        size: "lg",
+        size: "md",
       },
     }),
 
