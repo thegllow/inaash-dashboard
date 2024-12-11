@@ -12,6 +12,7 @@ import {
   TableThead,
   TextInput,
 } from "@mantine/core"
+import { Calendar } from "@mantine/dates"
 
 const primary = [
   "#f6ebff",
@@ -153,6 +154,15 @@ export const theme = createTheme({
       defaultProps: {
         fw: 400,
         size: "md",
+      },
+    }),
+    Calendar: Calendar.extend({
+      defaultProps: {
+        classNames() {
+          return {
+            day: `!rounded-full data-[selected='true']:!bg-secondary`,
+          }
+        },
       },
     }),
   },
