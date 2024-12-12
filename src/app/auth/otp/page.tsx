@@ -49,7 +49,7 @@ const OTP = () => {
       <img src={emailGlow} alt={"email grow"} className="mx-auto size-12" />
       <div className="space-y-1 text-center">
         <Title order={4}>{t("otp.title")}</Title>
-        <Text size="sm" c="gray.4">
+        <Text size="sm" c="gray.5">
           {t("otp.description")}
           {email}
         </Text>

@@ -6,7 +6,9 @@ import { Outlet } from "react-router"
 import ProtectedRoute from "./components/protct-routes"
 import { useQueryClient } from "@tanstack/react-query"
 import { getVideos } from "@/services/utils/get-videos"
-import { useEffect } from "react"
+import { useEffect, useLayoutEffect } from "react"
+import { useNavigate, usePathname } from "@/lib/i18n/navigation"
+import { isAuthenticated } from "@/utils/is-authenticated"
 
 export function DashboardLayout() {
   const [opened, { toggle }] = useDisclosure()
@@ -24,6 +26,11 @@ export function DashboardLayout() {
       queryFn: getVideos,
     })
   }, [queryClient])
+  const pathName = usePathname()
+  const navigate = useNavigate()
+  useLayoutEffect(() => {
+    if (!isAuthenticated()) navigate("/auth/login")
+  }, [pathName])
 
   return (
     <AppShell

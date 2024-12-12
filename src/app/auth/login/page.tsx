@@ -34,7 +34,7 @@ const Login = () => {
     <Stack gap={"xl"}>
       <div className="space-y-1 text-center">
         <Title order={2}>{t("login.title")}</Title>
-        <Text c="gray.4">{t("login.description")}</Text>
+        <Text c="gray.5">{t("login.description")}</Text>
       </div>
       <Stack component={"form"} onSubmit={onSubmit} gap={"lg"}>
         <Controller

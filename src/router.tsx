@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom"
-import Index from "./app/index"
 import Login from "./app/auth/login/page"
 import AuthLayout from "./app/auth/layout"
 import OTP from "./app/auth/otp/page"
@@ -9,6 +8,7 @@ import Coupons from "./app/dashboard/coupons/page"
 import AddCoupon from "./app/dashboard/coupons/add/page"
 import React, { Suspense } from "react"
 import { Loader } from "@mantine/core"
+import { Navigate } from "./lib/i18n/navigation"
 const ViewCoupon = React.lazy(async () => import("./app/dashboard/coupons/[id]/page"))
 const EditCoupon = React.lazy(async () => import("./app/dashboard/coupons/[id]/edit/page"))
 
@@ -16,8 +16,9 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/:locale?">
-        <Route index element={<Index />} />
+        <Route index element={<Navigate to={"/dashboard"} />} />
         <Route path="auth" element={<AuthLayout />}>
+          <Route index element={<Navigate to={"/auth/login"} />} />
           <Route path="login" element={<Login />} />
           <Route path="otp" element={<OTP />} />
           <Route path="reset-password" element={<ResetPassword />} />

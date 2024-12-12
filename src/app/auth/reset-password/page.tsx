@@ -29,7 +29,7 @@ const ResetPassword = () => {
     <Stack gap={"xl"}>
       <div className="space-y-1 text-center">
         <Title order={2}>{t("reset-password.title")}</Title>
-        <Text c="gray.4">{t("reset-password.description")}</Text>
+        <Text c="gray.5">{t("reset-password.description")}</Text>
       </div>
       <Stack component={"form"} onSubmit={onSubmit} gap={"lg"}>
         <Controller

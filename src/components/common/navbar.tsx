@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 import { horizontalLogo } from "@/assets"
 import { NavLink, usePathname } from "@/lib/i18n/navigation"
 import { cn } from "@/utils/cn"
+import { logout } from "@/utils/logout"
 
 const navItems = [
   {
@@ -76,7 +77,12 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
           </ScrollArea>
         </Stack>
         <Stack>
-          <Button justify="start" variant="subtle" color="gray.9" leftSection={<LogOut size={20} />}>
+          <Button
+            onClick={logout}
+            justify="start"
+            variant="subtle"
+            color="gray.9"
+            leftSection={<LogOut size={20} />}>
             {t("global.logout-button")}
           </Button>
         </Stack>
