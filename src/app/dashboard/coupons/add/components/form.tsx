@@ -18,6 +18,7 @@ import { PostAddCoupon } from "../add-coupon"
 import { type Coupon } from "../../types"
 import { PutUpdateCoupon } from "../../[id]/edit/update-coupon"
 import { useNavigate } from "react-router-dom"
+import { generateRandomCode } from "@/utils/generate-random-code"
 const Input = ({ name, ...props }: TextInputProps & { name: string }) => {
   const {
     control,
@@ -28,7 +29,7 @@ const Input = ({ name, ...props }: TextInputProps & { name: string }) => {
     <Controller
       control={control}
       name={name}
-      render={({ field }) => {
+      render={({ field: { onChange, ...field } }) => {
         return (
           <TextInput
             className="grow"
@@ -37,6 +38,10 @@ const Input = ({ name, ...props }: TextInputProps & { name: string }) => {
             // @ts-expect-error name is a valid
             placeholder={t(`coupons.add.form.${name}-input-placeholder`)}
             {...field}
+            onChange={(e) => {
+              if (name === "code") return onChange(e.target.value.toUpperCase())
+              onChange(e)
+            }}
             error={
               errors[name] &&
               (errors[name].type === "custom"
@@ -74,7 +79,6 @@ const AddEditCouponForm = ({ coupon }: { coupon?: Coupon }) => {
     control,
     formState: { errors, isSubmitting },
   } = form
-  console.log("🚀 ~ AddCouponForm ~ errors:", errors)
 
   const { data: videos } = useQuery({
     queryKey: ["list", "videos"],
@@ -96,11 +100,32 @@ const AddEditCouponForm = ({ coupon }: { coupon?: Coupon }) => {
   const handleGoBack = () => {
     navigate(-1)
   }
+
+  const handleGenerateCode = () => {
+    const code = generateRandomCode()
+    form.setValue("code", code, { shouldDirty: true, shouldTouch: true })
+  }
+
   return (
     <FormProvider {...form}>
       <Stack component={"form"} onSubmit={onSubmit} w={"100%"}>
         <Group w={"100%"}>
-          <Input name="code" />
+          <Input
+            name="code"
+            rightSectionWidth={"fit"}
+            rightSection={
+              <div className="mx-[3px]">
+                <Button
+                  onClick={handleGenerateCode}
+                  variant="light"
+                  color="secondary"
+                  size="sm"
+                  className="!border !border-secondary">
+                  {t("coupons.add.form.generate-code")}
+                </Button>
+              </div>
+            }
+          />
           <Input name="name" />
         </Group>
         <Controller

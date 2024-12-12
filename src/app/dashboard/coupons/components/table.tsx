@@ -3,7 +3,7 @@ import Loader from "@/components/common/loader"
 import PaginationCom from "@/components/common/pagination"
 import { Link } from "@/lib/i18n/navigation"
 import { ActionIcon, Badge, Box, Button, Popover, Stack, Table, TableTh, TableThead } from "@mantine/core"
-import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import dayjs from "dayjs"
 import { ChartNoAxesCombined, MoreVertical, Pen, User } from "lucide-react"
 import { useTranslation } from "react-i18next"
@@ -45,7 +45,7 @@ const TableCom = () => {
     queryKey: ["coupons", searchParams.toString()],
     queryFn: async () => await GetCoupons(searchParams),
     staleTime: Infinity,
-    placeholderData: keepPreviousData,
+    // placeholderData: keepPreviousData,
   })
   if (status === "pending") return <Loader />
 

@@ -8,7 +8,7 @@
     "apply": "تطبيق",
     "details": "التفاصيل",
     "reports": "التقارير",
-    "edit":"تعديل"
+    "edit": "تعديل"
   },
   "langs": {
     "ar": "العربية",
@@ -94,6 +94,7 @@
     "add": {
       "title": "إضافة قسيمة جديدة",
       "form": {
+        "generate-code": "توليد ",
         "name-input-label": "الاسم",
         "name-input-placeholder": "اسم القسيمة",
         "code-input-label": "الرمز",

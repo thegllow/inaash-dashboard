@@ -30,6 +30,7 @@ const Filters = () => {
             <Stack mt="xs">
               {couponStatus.map((status) => (
                 <Checkbox
+                  key={status}
                   radius={"sm"}
                   color="secondary"
                   value={status}
