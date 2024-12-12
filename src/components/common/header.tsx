@@ -18,6 +18,7 @@ const Header = ({ opened, toggle }: { opened: boolean; toggle: () => void }) => 
         </Group>
         <Group wrap="nowrap" align="center">
           <Select
+            size="sm"
             defaultValue={lang}
             className="max-w-32"
             variant="filled"

@@ -1,3 +1,4 @@
+import { useSmallScreen } from "@/hooks/use-small-screen"
 import { downloadFile } from "@/utils/download-file"
 import { Button, ButtonProps } from "@mantine/core"
 import { useMutation } from "@tanstack/react-query"
@@ -26,17 +27,18 @@ const ExportButton = ({ queryFun, ...props }: Props) => {
     mutate()
   }
 
+  const sm = useSmallScreen()
   return (
     <Button
       variant="white"
       className="!border !border-gray-300"
       color="gray.9"
       size="sm"
-      leftSection={<CloudDownload size={20} />}
+      leftSection={sm ? null : <CloudDownload size={22} />}
       onClick={handleExport}
       loading={isPending}
       {...props}>
-      {t("global.export")}
+      {sm ? <CloudDownload size={22} /> : t("global.export")}
     </Button>
   )
 }

@@ -1,3 +1,4 @@
+import { useSmallScreen } from "@/hooks/use-small-screen"
 import { Button, Checkbox, Divider, Popover, Stack } from "@mantine/core"
 import { SlidersHorizontal } from "lucide-react"
 import { parseAsArrayOf, parseAsString, useQueryState } from "nuqs"
@@ -12,6 +13,7 @@ const Filters = () => {
     setFilters(state)
   }
   const [state, setState] = useState<string[]>(filters)
+  const sm = useSmallScreen()
   return (
     <Popover width={200} position="bottom" withArrow>
       <Popover.Target>
@@ -20,8 +22,8 @@ const Filters = () => {
           className="!border !border-gray-300"
           color="gray.9"
           size="sm"
-          leftSection={<SlidersHorizontal size={20} />}>
-          {t("global.filters")}
+          leftSection={sm ? null : <SlidersHorizontal size={20} />}>
+          {sm ? <SlidersHorizontal size={20} /> : t("global.filters")}
         </Button>
       </Popover.Target>
       <Popover.Dropdown className="!border-none">
