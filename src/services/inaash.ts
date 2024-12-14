@@ -10,7 +10,7 @@ const InaashApi = axios.create({
 })
 // Create an Axios instance
 export const InaashApiGuest = axios.create({
-  baseURL: baseURL + "/guest",
+  baseURL: baseURL + "/guest/admin",
 })
 
 // Add a request interceptor to include the authentication token

@@ -1,7 +1,7 @@
 import { horizontalLogo } from "@/assets"
-import { AppShell, Box, Burger, Group, Indicator, Select } from "@mantine/core"
-import { Bell } from "lucide-react"
+import { AppShell, Box, Burger, Group, Select } from "@mantine/core"
 import { useTranslation } from "react-i18next"
+import UserNotifications from "./user-notifications"
 
 const Header = ({ opened, toggle }: { opened: boolean; toggle: () => void }) => {
   const { i18n } = useTranslation()
@@ -33,9 +33,7 @@ const Header = ({ opened, toggle }: { opened: boolean; toggle: () => void }) => 
               },
             ]}
           />
-          <Indicator color="red">
-            <Bell size={20} />
-          </Indicator>
+          <UserNotifications />
         </Group>
       </Group>
     </AppShell.Header>
