@@ -9,6 +9,7 @@ import AddCoupon from "./app/dashboard/coupons/add/page"
 import React, { Suspense } from "react"
 import { Loader } from "@mantine/core"
 import { Navigate } from "./lib/i18n/navigation"
+import Users from "./app/dashboard/users/page"
 const ViewCoupon = React.lazy(async () => import("./app/dashboard/coupons/[id]/page"))
 const EditCoupon = React.lazy(async () => import("./app/dashboard/coupons/[id]/edit/page"))
 
@@ -55,6 +56,10 @@ const Router = () => {
                 </Suspense>
               }
             />
+          </Route>
+          <Route path="users">
+            <Route index element={<Users />} />
+          
           </Route>
         </Route>
       </Route>

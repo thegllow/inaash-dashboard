@@ -9,13 +9,13 @@ const couponStatus = ["Active", "Inactive", "Expired"] as const
 const Filters = () => {
   const { t } = useTranslation()
   const [filters, setFilters] = useQueryState("statuses", parseAsArrayOf(parseAsString).withDefault([""]))
+  const [state, setState] = useState<string[]>(filters)
   const handleApplyFilters = () => {
     setFilters(state)
   }
-  const [state, setState] = useState<string[]>(filters)
   const sm = useSmallScreen()
   return (
-    <Popover width={200} position="bottom" withArrow>
+    <Popover width={200} position="bottom" withArrow shadow="md">
       <Popover.Target>
         <Button
           variant="white"

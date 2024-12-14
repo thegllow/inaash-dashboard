@@ -153,5 +153,77 @@
   },
   "notifications": {
     "title": "إشعارات"
+  },
+  "users": {
+    "title": "إدارة المستخدمين",
+    "add-button": "إضافة مستخدم جديد",
+    "filters": {
+      "langs": {
+        "title": "اللغات",
+        "ar": "العربية",
+        "en": "English",
+        "fr": "Français",
+        "fil": "Tagalog",
+        "id": "Indonesian",
+        "ur": "اُردُو"
+      },
+      "programs": {
+        "title": "البرامج"
+      }
+    },
+    "table": {
+      "id": "المعرف",
+      "name": "الاسم",
+      "mobile": "الهاتف",
+      "program": "البرنامج",
+      "lang": "اللغة",
+      "more": "المزيد",
+      "status-label": {
+        "active": "فعال",
+        "inactive": "غير نشط",
+        "expired": "منتهي الصلاحية"
+      }
+    },
+    "add": {
+      "title": "إضافة مستخدم جديد ",
+      "form": {
+        "name-input-label": "الاسم",
+        "name-input-placeholder": "اسم القسيمة",
+        "mobile-input-label": "رقم الهاتف",
+        "mobile-input-placeholder": "رقم الهاتف",
+        "amount-input-label": "قيمة الخصم",
+
+        "langs-input-label": "اختر اللغة",
+        "langs-input-placeholder": "اختر اللغة",
+        "save-button": "حفظ",
+        "cancel-button": "الغاء",
+        "errors": {
+          "required": "هذا الحقل مطلوب",
+          "invalidEmail": "الرجاء كتابة بريد الكتروني صالح"
+        }
+      }
+    },
+    "edit": {
+      "title": "تحرير تفاصيل المستخدم"
+    },
+    "view": {
+      "title": "تفاصيل القسيمة",
+      "name": "الاسم",
+      "code": "الرمز",
+      "amount": "قيمة الخصم",
+      "video_ids": "اختر البرنامج التدريبي",
+      "date_start": "تاريخ البدء",
+      "date_end": "تاريخ الإنتهاء",
+      "max_uses": "إجمالي عدد الاستخدامات",
+      "max_customer_uses": "عدد الاستخدامات لكل مستخدم",
+      "type": "نوع الخصم",
+      "type-fixed": "ثابت",
+      "type-percentage": "نسبة %",
+      "langs": " اللغة",
+      "discount_amount": "إجمالي مبلغ الخصم",
+      "paid_amount_after_discount": "إجمالي المبلغ المدفوع بعد الخصم",
+      "paid_amount": "إجمالي المبلغ المدفوع"
+    },
+    "toggle-error": "تعذر تحديث حالة القسيمة"
   }
 }
