@@ -3,6 +3,7 @@ import {
   Button,
   createTheme,
   Input,
+  InputWrapper,
   Menu,
   PasswordInput,
   rem,
@@ -115,40 +116,41 @@ export const theme = createTheme({
     Input: Input.extend({
       defaultProps: {
         size: "md",
-        // classNames(theme, props, ctx) {
-        //   const isFilled = props.variant === "filled"
-        //   if (!isFilled) return {}
+        classNames: {
+          input: '[type="tel"]:!text-left',
+        },
+        styles(theme, props) {
+          const isFilled = props.variant === "filled"
+          if (isFilled)
+            return {
+              input: {
+                border: `1px solid var(--mantine-color-gray-4)`,
+                background: `#f6f6f6`,
+              },
+            }
 
-        //   return {
-        //     input: "!bg-white",
-        //   }
-        // },
+          return {}
+        },
       },
     }),
     TextInput: TextInput.extend({
       defaultProps: {
-        styles: {
-          label: {
-            fontWeight: 400,
-            marginBottom: "6px",
-          },
-        },
         size: "md",
       },
     }),
     PasswordInput: PasswordInput.extend({
       defaultProps: {
-        styles: {
-          label: {
-            fontWeight: 400,
-            color: "#5A5A5A",
-            marginBottom: "6px",
-          },
-        },
         size: "md",
       },
     }),
-
+    InputWrapper: InputWrapper.extend({
+      styles: {
+        label: {
+          fontWeight: 400,
+          marginBottom: "6px",
+        },
+      },
+    }),
     Button: Button.extend({
       defaultProps: {
         fw: 400,

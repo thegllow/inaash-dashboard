@@ -157,6 +157,7 @@
   "users": {
     "title": "إدارة المستخدمين",
     "add-button": "إضافة مستخدم جديد",
+    "add-title": "اضافة مستخدم جديد",
     "filters": {
       "langs": {
         "title": "اللغات",
@@ -184,23 +185,21 @@
         "expired": "منتهي الصلاحية"
       }
     },
-    "add": {
-      "title": "إضافة مستخدم جديد ",
-      "form": {
-        "name-input-label": "الاسم",
-        "name-input-placeholder": "اسم القسيمة",
-        "mobile-input-label": "رقم الهاتف",
-        "mobile-input-placeholder": "رقم الهاتف",
-        "amount-input-label": "قيمة الخصم",
+    "form": {
+      "name-input-label": "الاسم",
+      "name-input-placeholder": "الاسم",
+      "email-input-label": "الاسم",
+      "email-input-placeholder": "الاسم",
+      "mobile-input-label": "رقم الهاتف",
+      "mobile-input-placeholder": "رقم الهاتف",
 
-        "langs-input-label": "اختر اللغة",
-        "langs-input-placeholder": "اختر اللغة",
-        "save-button": "حفظ",
-        "cancel-button": "الغاء",
-        "errors": {
-          "required": "هذا الحقل مطلوب",
-          "invalidEmail": "الرجاء كتابة بريد الكتروني صالح"
-        }
+      "langs-input-label": "اختر اللغة",
+      "langs-input-placeholder": "اختر اللغة",
+      "save-button": "حفظ",
+      "cancel-button": "الغاء",
+      "errors": {
+        "required": "هذا الحقل مطلوب",
+        "invalidEmail": "الرجاء كتابة بريد الكتروني صالح"
       }
     },
     "edit": {
