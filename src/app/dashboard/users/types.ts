@@ -1,4 +1,6 @@
-export interface NotificationsResponse {
+import { WEBSITE_LANGS } from "@/config"
+
+export interface UsersResponse {
   status: boolean
   message: string
   data: Data
@@ -9,30 +11,25 @@ export interface NotificationsResponse {
 }
 
 export interface Data {
-  helpers: Helpers
+  helpers: null
   items: Items
 }
 
-export interface Helpers {
-  introduction: Introduction
-}
-
-export interface Introduction {
-  title: string
-  description: string
-}
-
 export interface Items {
-  data: Notification[]
+  data: User[]
   links: Links
   meta: Meta
 }
 
-export interface Notification {
+export interface User {
   id: string
-  name: string
-  date: string
-  type: string
+  mobile: string
+  first_name: null
+  last_name: null
+  full_name: null
+  lang: (typeof WEBSITE_LANGS)[number]
+  email: null
+  deleted_at: null
 }
 
 export interface Links {
@@ -43,7 +40,7 @@ export interface Links {
 }
 
 export interface Meta {
-  current_page: number | null
+  current_page: number
   from: number
   last_page: number
   links: Link[]
@@ -66,4 +63,6 @@ export interface RequestBody {
   sort_direction: string
   date_from: Date
   date_to: Date
+  id: null
+  email: null
 }

@@ -59,7 +59,7 @@ const Filters = () => {
                   size="sm"
                   color="secondary"
                   value={lang}
-                  label={t(`users.filters.langs.${lang}`)}
+                  label={t(`langs.${lang}`)}
                 />
               ))}
             </Stack>

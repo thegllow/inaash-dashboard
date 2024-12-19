@@ -10,6 +10,7 @@ import React, { Suspense } from "react"
 import { Loader } from "@mantine/core"
 import { Navigate } from "./lib/i18n/navigation"
 import Users from "./app/dashboard/users/page"
+import ViewUser from "./app/dashboard/users/[id]/page"
 const ViewCoupon = React.lazy(async () => import("./app/dashboard/coupons/[id]/page"))
 const EditCoupon = React.lazy(async () => import("./app/dashboard/coupons/[id]/edit/page"))
 
@@ -27,6 +28,7 @@ const Router = () => {
 
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route index element={<div>dashboard</div>} />
+          {/* coupons */}
           <Route path="coupons">
             <Route index element={<Coupons />} />
             <Route path="add" element={<AddCoupon />} />
@@ -57,9 +59,22 @@ const Router = () => {
               }
             />
           </Route>
+          {/* users */}
           <Route path="users">
             <Route index element={<Users />} />
-          
+            <Route
+              path=":id"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="flex h-full items-center justify-center py-20">
+                      <Loader size={"md"} />
+                    </div>
+                  }>
+                  <ViewUser />
+                </Suspense>
+              }
+            />
           </Route>
         </Route>
       </Route>

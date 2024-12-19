@@ -20,20 +20,41 @@ const UserForm = () => {
   return (
     <Stack>
       <Controller
-        name="name"
+        name="first_name"
         control={control}
         render={({ field }) => {
           return (
             <TextInput
               variant="filled"
               className="grow"
-              label={t(`users.form.name-input-label`)}
-              placeholder={t(`users.form.name-input-placeholder`)}
+              label={t(`users.form.first_name-input-label`)}
+              placeholder={t(`users.form.first_name-input-placeholder`)}
               error={
-                errors.name &&
-                (errors.name.type === "custom"
-                  ? (errors.name.message as string)
-                  : t(`users.form.errors.${errors.name.message as "required"}`))
+                errors.first_name &&
+                (errors.first_name.type === "custom"
+                  ? (errors.first_name.message as string)
+                  : t(`users.form.errors.${errors.first_name.message as "required"}`))
+              }
+              {...field}
+            />
+          )
+        }}
+      />
+      <Controller
+        name="last_name"
+        control={control}
+        render={({ field }) => {
+          return (
+            <TextInput
+              variant="filled"
+              className="grow"
+              label={t(`users.form.last_name-input-label`)}
+              placeholder={t(`users.form.last_name-input-placeholder`)}
+              error={
+                errors.last_name &&
+                (errors.last_name.type === "custom"
+                  ? (errors.last_name.message as string)
+                  : t(`users.form.errors.${errors.last_name.message as "required"}`))
               }
               {...field}
             />
@@ -64,7 +85,7 @@ const UserForm = () => {
         </div>
       </div>
       <Controller
-        name="name"
+        name="email"
         control={control}
         render={({ field }) => {
           return (

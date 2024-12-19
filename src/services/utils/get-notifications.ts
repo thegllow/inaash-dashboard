@@ -1,5 +1,4 @@
 import { NotificationsResponse } from "@/@types/notifications"
-import InaashApi from "@/services/inaash"
 
 export const getNotifications = async ({ page }: { page: string | null }) => {
   //   const response = await InaashApi.get<NotificationsResponse>("/notifications/list", {
@@ -51,7 +50,7 @@ export const getNotifications = async ({ page }: { page: string | null }) => {
           next: null,
         },
         meta: {
-          current_page: page,
+          current_page: page ? Number(page) : null,
           from: 1,
           last_page: 3,
           links: [

@@ -8,14 +8,17 @@
     "apply": "تطبيق",
     "details": "التفاصيل",
     "reports": "التقارير",
-    "edit": "تعديل"
+    "edit": "تعديل",
+    "delete": "حذف"
   },
   "langs": {
+    "title": "اللغات",
     "ar": "العربية",
     "en": "English",
     "fr": "Français",
     "fil": "Tagalog",
-    "ur": "اُردُو"
+    "ur": "اُردُو",
+    "id": "Indonesian"
   },
   "login": {
     "title": "قم بتسجيل الدخول الى حسابك",
@@ -157,6 +160,7 @@
   "users": {
     "title": "إدارة المستخدمين",
     "add-button": "إضافة مستخدم جديد",
+    "edit-button": "تعديل",
     "add-title": "اضافة مستخدم جديد",
     "filters": {
       "langs": {
@@ -186,10 +190,12 @@
       }
     },
     "form": {
-      "name-input-label": "الاسم",
-      "name-input-placeholder": "الاسم",
-      "email-input-label": "الاسم",
-      "email-input-placeholder": "الاسم",
+      "first_name-input-label": "الاسم الاول",
+      "last_name-input-label": "اسم العائلة",
+      "first_name-input-placeholder": "الاسم",
+      "last_name-input-placeholder": "الاسم",
+      "email-input-label": "البريد الإلكتروني (اختياري)",
+      "email-input-placeholder": "البريد الإلكتروني (اختياري)",
       "mobile-input-label": "رقم الهاتف",
       "mobile-input-placeholder": "رقم الهاتف",
 
@@ -206,22 +212,13 @@
       "title": "تحرير تفاصيل المستخدم"
     },
     "view": {
-      "title": "تفاصيل القسيمة",
-      "name": "الاسم",
-      "code": "الرمز",
-      "amount": "قيمة الخصم",
-      "video_ids": "اختر البرنامج التدريبي",
-      "date_start": "تاريخ البدء",
-      "date_end": "تاريخ الإنتهاء",
-      "max_uses": "إجمالي عدد الاستخدامات",
-      "max_customer_uses": "عدد الاستخدامات لكل مستخدم",
-      "type": "نوع الخصم",
-      "type-fixed": "ثابت",
-      "type-percentage": "نسبة %",
-      "langs": " اللغة",
-      "discount_amount": "إجمالي مبلغ الخصم",
-      "paid_amount_after_discount": "إجمالي المبلغ المدفوع بعد الخصم",
-      "paid_amount": "إجمالي المبلغ المدفوع"
+      "title": "معلومات المستخدم",
+      "id": "المعرف",
+      "full_name": "الاسم",
+      "email": "البريد الالكتروني",
+      "mobile": "الهاتف",
+      "lang": "اللغة",
+      "certificate": "عدد الشهادات"
     },
     "toggle-error": "تعذر تحديث حالة القسيمة"
   }
