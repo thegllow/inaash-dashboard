@@ -6,7 +6,6 @@ import UserNotifications from "./user-notifications"
 const Header = ({ opened, toggle }: { opened: boolean; toggle: () => void }) => {
   const { i18n } = useTranslation()
   const lang = i18n.language
-  console.log("🚀 ~ Header ~ lang:", lang)
   return (
     <AppShell.Header className="!border-b-gray-300">
       <Group justify="space-between" h="100%" px="md" wrap="nowrap">

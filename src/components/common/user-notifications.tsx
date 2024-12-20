@@ -33,7 +33,6 @@ const UserNotifications = () => {
       queryFn: ({ pageParam }) => getNotifications({ page: pageParam }),
       initialPageParam: "1",
       getNextPageParam: (lastPage) => {
-        console.log("🚀 ~ UserNotifications ~ lastPage:", lastPage)
         return lastPage.meta.last_page == lastPage.meta.current_page
           ? null
           : Number(lastPage.meta.current_page) + 1 + ""

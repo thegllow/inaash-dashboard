@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next"
 const couponStatus = ["Active", "Inactive", "Expired"] as const
 const Filters = () => {
   const { t } = useTranslation()
-  const [filters, setFilters] = useQueryState("statuses", parseAsArrayOf(parseAsString).withDefault([""]))
+  const [filters, setFilters] = useQueryState("statuses[]", parseAsArrayOf(parseAsString).withDefault([""]))
   const [state, setState] = useState<string[]>(filters)
   const handleApplyFilters = () => {
     setFilters(state)
