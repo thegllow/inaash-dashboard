@@ -1,7 +1,16 @@
 {
   "global": {
     "logout-button": "تسجيل الخروج",
-    "errors": { "serverError": "حصل خطأ في الاتصال بالسيرفر" },
+    "errors": {
+      "serverError": "حصل خطأ في الاتصال بالسيرفر",
+      "required": "هذا الحقل مطلوب",
+      "invalidEmail": "الرجاء كتابة بريد الكتروني صالح",
+      "shortPassword": "كلمة مرور قصيرة للغاية",
+      "longPassword": "كلمة مرور طويلى للغاية",
+      "largeNumber": "رقم كبير جدأ",
+      "smallNumber": "رقم صغير جدا",
+      "invalidDate": "تاريخ غير صالح"
+    },
     "search": "البحث",
     "filters": "فلترة",
     "export": "تصدير ",
@@ -28,13 +37,7 @@
       "password-label": "كلمة المرور",
       "forgot-password": "نسيت كلمة السر",
       "remember-me": "ينركذت",
-      "sign-in-button": "sign in",
-      "errors": {
-        "required": "هذا الحقل مطلوب",
-        "invalidEmail": "الرجاء كتابة بريد الكتروني صالح",
-        "short": "كلمة مرور قصيرة للغاية",
-        "long": "كلمة مرور طويلى للغاية"
-      }
+      "sign-in-button": "sign in"
     }
   },
   "otp": {
@@ -121,14 +124,7 @@
         "langs-input-label": "اختر اللغة",
         "langs-input-placeholder": "اختر اللغة",
         "save-button": "حفظ",
-        "cancel-button": "الغاء",
-        "errors": {
-          "required": "هذا الحقل مطلوب",
-          "invalidEmail": "الرجاء كتابة بريد الكتروني صالح",
-          "largeNumber": "رقم كبير جدأ",
-          "smallNumber": "رقم صغير جدا",
-          "invalidDate": "تاريخ غير صالح"
-        }
+        "cancel-button": "الغاء"
       }
     },
     "edit": {

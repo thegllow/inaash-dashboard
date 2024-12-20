@@ -1,4 +1,5 @@
 import { useParams } from "@/lib/i18n/navigation"
+import { showErrorMessage } from "@/utils/show-error-message"
 import { UserSchema } from "@/validation/user"
 import { Stack, Text, TextInput } from "@mantine/core"
 import { Controller, useFormContext } from "react-hook-form"
@@ -29,12 +30,7 @@ const UserForm = () => {
               className="grow"
               label={t(`users.form.first_name-input-label`)}
               placeholder={t(`users.form.first_name-input-placeholder`)}
-              error={
-                errors.first_name &&
-                (errors.first_name.type === "custom"
-                  ? (errors.first_name.message as string)
-                  : t(`users.form.errors.${errors.first_name.message as "required"}`))
-              }
+              error={showErrorMessage(errors, "first_name")}
               {...field}
             />
           )
@@ -50,12 +46,7 @@ const UserForm = () => {
               className="grow"
               label={t(`users.form.last_name-input-label`)}
               placeholder={t(`users.form.last_name-input-placeholder`)}
-              error={
-                errors.last_name &&
-                (errors.last_name.type === "custom"
-                  ? (errors.last_name.message as string)
-                  : t(`users.form.errors.${errors.last_name.message as "required"}`))
-              }
+              error={showErrorMessage(errors, "last_name")}
               {...field}
             />
           )
@@ -75,12 +66,7 @@ const UserForm = () => {
             defaultCountry="SA"
             inputComponent={TextInput}
             radius="md"
-            isInvalid={!!form.formState.errors.mobile?.message}
-            errorMessage={
-              form.formState.errors.mobile?.message
-                ? t(`users.form.errors.${form.formState.errors.mobile?.message as "required"}`)
-                : null
-            }
+            error={showErrorMessage(errors, "mobile")}
           />
         </div>
       </div>
@@ -96,12 +82,7 @@ const UserForm = () => {
               className="grow"
               label={t(`users.form.email-input-label`)}
               placeholder={t(`users.form.email-input-placeholder`)}
-              error={
-                errors.email &&
-                (errors.email.type === "custom"
-                  ? (errors.email.message as string)
-                  : t(`users.form.errors.${errors.email.message as "required"}`))
-              }
+              error={showErrorMessage(errors, "email")}
               {...field}
             />
           )

@@ -1,4 +1,5 @@
 import { handleFormError } from "@/utils/handle-form-errors"
+import { showErrorMessage } from "@/utils/show-error-message"
 import { ResetPasswordSchema } from "@/validation/auth"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button, PasswordInput, Stack, Text, Title } from "@mantine/core"
@@ -40,7 +41,7 @@ const ResetPassword = () => {
               <PasswordInput
                 label={t("reset-password.form.password-label")}
                 {...field}
-                error={errors.password && t(`login.form.errors.${errors.password.message as "required"}`)}
+                error={showErrorMessage(errors, "password")}
               />
             )
           }}
@@ -53,10 +54,7 @@ const ResetPassword = () => {
               <PasswordInput
                 label={t("reset-password.form.password-confirmation-label")}
                 {...field}
-                error={
-                  errors.password_confirmation &&
-                  t(`reset-password.form.errors.${errors.password_confirmation.message as "required"}`)
-                }
+                error={showErrorMessage(errors, "password_confirmation")}
               />
             )
           }}

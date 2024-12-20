@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "@/lib/i18n/navigation"
 import { InaashApiGuest } from "@/services/inaash"
 import { handleFormError } from "@/utils/handle-form-errors"
+import { showErrorMessage } from "@/utils/show-error-message"
 import { LoginSchema } from "@/validation/auth"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button, PasswordInput, Stack, Text, TextInput, Title } from "@mantine/core"
@@ -45,7 +46,7 @@ const Login = () => {
               <TextInput
                 label={t("login.form.email-label")}
                 {...field}
-                error={errors.email && t(`login.form.errors.${errors.email.message as "required"}`)}
+                error={showErrorMessage(errors, "email")}
               />
             )
           }}
@@ -58,7 +59,7 @@ const Login = () => {
               <PasswordInput
                 label={t("login.form.password-label")}
                 {...field}
-                error={errors.password && t(`login.form.errors.${errors.password.message as "required"}`)}
+                error={showErrorMessage(errors, "password")}
               />
             )
           }}

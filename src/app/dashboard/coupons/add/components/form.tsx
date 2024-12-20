@@ -7,7 +7,7 @@ import { DateInput } from "@mantine/dates"
 
 import { useQuery } from "@tanstack/react-query"
 import { Percent } from "lucide-react"
-import { Controller, FormProvider, useForm, useFormContext } from "react-hook-form"
+import { Controller, FieldValues, FormProvider, useForm, useFormContext } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { DevTool } from "@hookform/devtools"
 import { WEBSITE_LANGS } from "@/config"
@@ -19,6 +19,7 @@ import { type Coupon } from "../../types"
 import { PutUpdateCoupon } from "../../[id]/edit/update-coupon"
 import { useNavigate } from "react-router-dom"
 import { generateRandomCode } from "@/utils/generate-random-code"
+import { showErrorMessage } from "@/utils/show-error-message"
 const Input = ({ name, ...props }: TextInputProps & { name: string }) => {
   const {
     control,
@@ -42,12 +43,7 @@ const Input = ({ name, ...props }: TextInputProps & { name: string }) => {
               if (name === "code") return onChange(e.target.value.toUpperCase())
               onChange(e)
             }}
-            error={
-              errors[name] &&
-              (errors[name].type === "custom"
-                ? (errors[name].message as string)
-                : t(`coupons.add.form.errors.${errors[name].message as "required"}`))
-            }
+            error={showErrorMessage(errors, name)}
             {...props}
           />
         )
@@ -136,12 +132,7 @@ const AddEditCouponForm = ({ coupon }: { coupon?: Coupon }) => {
               <Radio.Group
                 label={t(`coupons.add.form.type-input-label`)}
                 {...field}
-                error={
-                  errors.type &&
-                  (errors.type?.type === "custom"
-                    ? errors.type.message
-                    : t(`coupons.add.form.errors.${errors.type.message as "required"}`))
-                }>
+                error={showErrorMessage(errors, "type")}>
                 <Stack gap={"xs"} mt="xs">
                   <Radio
                     color="secondary"
@@ -176,12 +167,7 @@ const AddEditCouponForm = ({ coupon }: { coupon?: Coupon }) => {
               <Checkbox.Group
                 label={t(`coupons.add.form.video_ids-input-label`)}
                 {...field}
-                error={
-                  errors.video_ids &&
-                  (errors.video_ids?.type === "custom"
-                    ? errors.video_ids.message
-                    : t(`coupons.add.form.errors.${errors.video_ids.message as "required"}`))
-                }>
+                error={showErrorMessage(errors, "video_ids")}>
                 <Stack gap={"xs"} mt="xs">
                   {videos?.map((video) => {
                     return (
@@ -206,12 +192,7 @@ const AddEditCouponForm = ({ coupon }: { coupon?: Coupon }) => {
             return (
               <Checkbox.Group
                 label={t(`coupons.add.form.langs-input-label`)}
-                error={
-                  errors.langs &&
-                  (errors.type?.type === "custom"
-                    ? errors.type.message
-                    : t(`coupons.add.form.errors.${errors.langs.message as "required"}`))
-                }
+                error={showErrorMessage(errors, "langs")}
                 {...field}>
                 <Group gap={"xs"} mt="xs">
                   {WEBSITE_LANGS?.map((lang) => {
@@ -253,10 +234,7 @@ const AddEditCouponForm = ({ coupon }: { coupon?: Coupon }) => {
                   label={t(`coupons.add.form.date_start-input-label`)}
                   placeholder={t(`coupons.add.form.date_start-input-placeholder`)}
                   {...field}
-                  error={
-                    errors.date_start &&
-                    t(`coupons.add.form.errors.${errors.date_start.message as "required"}`)
-                  }
+                  error={showErrorMessage(errors, "date_start")}
                 />
               )
             }}
@@ -273,9 +251,7 @@ const AddEditCouponForm = ({ coupon }: { coupon?: Coupon }) => {
                   label={t(`coupons.add.form.date_end-input-label`)}
                   placeholder={t(`coupons.add.form.date_end-input-placeholder`)}
                   {...field}
-                  error={
-                    errors.date_end && t(`coupons.add.form.errors.${errors.date_end.message as "required"}`)
-                  }
+                  error={showErrorMessage(errors, "date_end")}
                 />
               )
             }}
