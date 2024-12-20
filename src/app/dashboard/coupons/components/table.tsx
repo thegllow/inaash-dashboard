@@ -66,7 +66,7 @@ const TableCom = () => {
           <Table.Tbody>
             {status === "error" ? <Error error={error} /> : null}
             {status === "success"
-              ? data.data.map((coupon) => (
+              ? data.items.data.map((coupon) => (
                   <Table.Tr key={coupon.id}>
                     <Table.Td>{coupon.name}</Table.Td>
                     <Table.Td>{coupon.code}</Table.Td>
@@ -139,7 +139,7 @@ const TableCom = () => {
           </Table.Tbody>
         </Table>
       </Table.ScrollContainer>
-      <PaginationCom last_page={data?.meta.last_page} />
+      <PaginationCom last_page={data?.items.meta.last_page} />
     </>
   )
 }

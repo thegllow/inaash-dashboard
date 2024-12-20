@@ -22,9 +22,8 @@ InaashApi.interceptors.request.use(
     // if (!config.data.headers["Accept-language"]) {
     config.headers["Accept-language"] = locale
     // }
-    console.log("🚀 ~ locale:", locale)
 
-    console.log("config.params", config.params)
+    // turn URLSearchParams to object , and handle arrays
     if (config.params && config.params instanceof URLSearchParams) {
       const paramsObject: Record<string, unknown> = {}
       for (const [key, value] of config.params.entries()) {

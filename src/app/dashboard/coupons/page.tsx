@@ -32,7 +32,7 @@ const Coupons = () => {
       <Group justify="space-between" gap={"lg"} wrap="nowrap">
         <SearchInput />
         <Group wrap="nowrap">
-          <ExportButton queryFun={GetCoupons} />
+          <ExportButton queryFun={GetCoupons} filename="coupons" />
           <Filters />
         </Group>
       </Group>

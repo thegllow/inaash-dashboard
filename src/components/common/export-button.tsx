@@ -8,6 +8,7 @@ import { useSearchParams } from "react-router-dom"
 
 type Props = ButtonProps & {
   queryFun: (args: URLSearchParams) => Promise<unknown>
+  filename: string
 }
 
 const ExportButton = ({ queryFun, ...props }: Props) => {
@@ -20,7 +21,7 @@ const ExportButton = ({ queryFun, ...props }: Props) => {
       return await queryFun(funcSearchParams)
     },
     onSuccess(response) {
-      downloadFile((response as { data: Blob }).data, "coupons.xlsx")
+      downloadFile((response as { url: string }).url, `${props.filename}.csv`)
     },
   })
   const handleExport = () => {

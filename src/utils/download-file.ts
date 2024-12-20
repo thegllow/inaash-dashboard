@@ -1,8 +1,7 @@
-export const downloadFile = (blob: Blob, fileName?: string) => {
-  const url = window.URL.createObjectURL(new Blob([blob]))
+export const downloadFile = (url: string, fileName: string) => {
   const a = document.createElement("a")
   a.href = url
-  a.download = fileName || "filename.xlsx" // Set the file name
+  a.download = fileName
   document.body.appendChild(a)
   a.click()
   a.remove()
