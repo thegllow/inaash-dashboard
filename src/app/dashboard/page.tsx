@@ -1,5 +1,16 @@
 import { BarChart, DonutChart, LineChart } from "@mantine/charts"
-import { Box, Divider, Group, Paper, SegmentedControl, Select, SimpleGrid, Stack, Text } from "@mantine/core"
+import {
+  Box,
+  Divider,
+  Group,
+  lighten,
+  Paper,
+  SegmentedControl,
+  Select,
+  SimpleGrid,
+  Stack,
+  Text,
+} from "@mantine/core"
 import { useSuspenseQueries } from "@tanstack/react-query"
 import { CircleDollarSign, GraduationCap, Users } from "lucide-react"
 import { useState } from "react"
@@ -9,7 +20,7 @@ import { GetGeneralStatistics } from "./get-general-statistics"
 import { GetRevenueGraph } from "./get-revenue-graph"
 import { GetUserGraph } from "./get-user-graph"
 import { GeneralStatisticsResponse, UserGraphResponse } from "./types"
-import { VIDEO_COLORS } from "@/config"
+import { LIGHT_VIDEO_COLORS, VIDEO_COLORS } from "@/config"
 
 const generalStatistics = [
   {
@@ -149,22 +160,24 @@ const Home = () => {
               data={generalStatisticsQuery.data.total_certificates_statistics.map((value) => ({
                 name: value.x,
                 value: value.y,
-                color: VIDEO_COLORS[Number(value.video_id)],
+                color: LIGHT_VIDEO_COLORS[Number(value.video_id)],
               }))}
             />
           </Group>
-          <Group justify="center">
+          <Group justify="center" wrap="nowrap">
             {generalStatisticsQuery.data.total_certificates_statistics.map((value) => {
               return (
                 <Stack key={value.video_id} gap={0} justify="center">
                   <Group justify="center">
-                    <Box bg={VIDEO_COLORS[Number(value.video_id)]} className="size-1.5 rounded-full"></Box>
                     <Text size="sm" fw={600}>
                       {value.y}
                     </Text>
+                    <Box
+                      bg={LIGHT_VIDEO_COLORS[Number(value.video_id)]}
+                      className="size-2 rounded-full"></Box>
                   </Group>
                   <Text size="xs" c={"gray"}>
-                    {value.y}
+                    {value.x}
                   </Text>
                 </Stack>
               )

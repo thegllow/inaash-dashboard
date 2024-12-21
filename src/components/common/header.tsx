@@ -6,6 +6,11 @@ import UserNotifications from "./user-notifications"
 const Header = ({ opened, toggle }: { opened: boolean; toggle: () => void }) => {
   const { i18n } = useTranslation()
   const lang = i18n.language
+  const handleChangeLanguage = (value: string | null) => {
+    if (!value) return
+    i18n.changeLanguage(value)
+  }
+
   return (
     <AppShell.Header className="!border-b-gray-300">
       <Group justify="space-between" h="100%" px="md" wrap="nowrap">
@@ -19,6 +24,8 @@ const Header = ({ opened, toggle }: { opened: boolean; toggle: () => void }) => 
           <Select
             size="sm"
             defaultValue={lang}
+            allowDeselect={false}
+            onChange={handleChangeLanguage}
             className="max-w-32"
             variant="filled"
             data={[

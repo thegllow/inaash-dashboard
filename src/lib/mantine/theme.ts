@@ -7,6 +7,7 @@ import {
   Menu,
   PasswordInput,
   rem,
+  Select,
   Table,
   TableTd,
   TableTh,
@@ -119,6 +120,24 @@ export const theme = createTheme({
         classNames: {
           input: '[type="tel"]:!text-left',
         },
+        styles(theme, props) {
+          const isFilled = props.variant === "filled"
+          if (isFilled)
+            return {
+              input: {
+                border: `1px solid var(--mantine-color-gray-4)`,
+                background: `#f6f6f6`,
+              },
+            }
+
+          return {}
+        },
+      },
+    }),
+    Select: Select.extend({
+      defaultProps: {
+        size: "md",
+
         styles(theme, props) {
           const isFilled = props.variant === "filled"
           if (isFilled)
