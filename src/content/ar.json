@@ -95,6 +95,14 @@
     "certificates-statistics": {
       "title": "إجمالي الشهادات"
     },
+    "users": {
+      "table": {
+        "id": "المعرف",
+        "name": "الاسم",
+        "program": "البرنامج",
+        "transaction": "حالة الدفع"
+      }
+    },
 
     "graph-type": {
       "hourly": "24 ساعة",

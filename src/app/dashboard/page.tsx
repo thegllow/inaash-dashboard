@@ -1,13 +1,15 @@
 import { BarChart, DonutChart, LineChart } from "@mantine/charts"
-import { Divider, Group, Paper, SegmentedControl, Select, SimpleGrid, Stack, Text } from "@mantine/core"
+import { Box, Divider, Group, Paper, SegmentedControl, Select, SimpleGrid, Stack, Text } from "@mantine/core"
 import { useSuspenseQueries } from "@tanstack/react-query"
 import { CircleDollarSign, GraduationCap, Users } from "lucide-react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
+import UsersInfo from "./components/users-info"
 import { GetGeneralStatistics } from "./get-general-statistics"
-import { GetUserGraph } from "./get-user-graph"
-import { GeneralStatisticsResponse, RevenueGraphResponse, UserGraphResponse } from "./types"
 import { GetRevenueGraph } from "./get-revenue-graph"
+import { GetUserGraph } from "./get-user-graph"
+import { GeneralStatisticsResponse, UserGraphResponse } from "./types"
+import { VIDEO_COLORS } from "@/config"
 
 const generalStatistics = [
   {
@@ -143,14 +145,31 @@ const Home = () => {
               thickness={18}
               strokeWidth={0}
               withTooltip={false}
-              chartLabel="Users by country"
-              data={[
-                { name: "USA", value: 400, color: "#E1CDFE" },
-                { name: "India", value: 300, color: "#96E9EA" },
-              ]}
+              chartLabel={`${t(`home.statistics.total_certificates`)} ${generalStatisticsQuery.data.total_certificates}`}
+              data={generalStatisticsQuery.data.total_certificates_statistics.map((value) => ({
+                name: value.x,
+                value: value.y,
+                color: VIDEO_COLORS[Number(value.video_id)],
+              }))}
             />
           </Group>
-          <Group></Group>
+          <Group justify="center">
+            {generalStatisticsQuery.data.total_certificates_statistics.map((value) => {
+              return (
+                <Stack key={value.video_id} gap={0} justify="center">
+                  <Group justify="center">
+                    <Box bg={VIDEO_COLORS[Number(value.video_id)]} className="size-1.5 rounded-full"></Box>
+                    <Text size="sm" fw={600}>
+                      {value.y}
+                    </Text>
+                  </Group>
+                  <Text size="xs" c={"gray"}>
+                    {value.y}
+                  </Text>
+                </Stack>
+              )
+            })}
+          </Group>
         </Paper>
         <Paper component={Stack} gap={"lg"} p="lg" className="grow" radius="md">
           <Group justify="space-between">
@@ -183,6 +202,8 @@ const Home = () => {
           />
         </Paper>
       </Group>
+
+      <UsersInfo />
     </Stack>
   )
 }

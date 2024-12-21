@@ -3,10 +3,9 @@ import SearchInput from "@/components/ui/search-input"
 import { useSmallScreen } from "@/hooks/use-small-screen"
 import { Group, Space, Stack, Title } from "@mantine/core"
 import { useTranslation } from "react-i18next"
-import { GetCoupons } from "../coupons/get-coupons"
-import UserModal from "./components/user-modal"
 import Filters from "./components/filters"
 import TableCom from "./components/table"
+import UserModal from "./components/user-modal"
 import { GetUsers } from "./get-users"
 
 const Users = () => {
