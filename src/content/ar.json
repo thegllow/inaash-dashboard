@@ -86,10 +86,22 @@
     },
     "user-graph": {
       "title": "إجمالي المستخدمين باللغات",
+      "y-axis-label": "المستخدمين النشطين"
+    },
+    "revenue-graph": {
+      "title": "إجمالي الإيرادات",
+      "y-axis-label": "الايرادات"
+    },
+    "certificates-statistics": {
+      "title": "إجمالي الشهادات"
+    },
+
+    "graph-type": {
+      "hourly": "24 ساعة",
+      "daily": "يومي",
       "monthly": "شهري",
       "weekly": "اسبوعي",
-      "yearly": "سنوي",
-      "y-axis-label": "المستخدمين النشطين"
+      "yearly": "سنوي"
     }
   },
   "coupons": {

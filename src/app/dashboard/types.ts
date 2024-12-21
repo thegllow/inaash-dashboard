@@ -33,14 +33,14 @@ export interface UserGraphResponse {
 }
 
 export interface Graph {
-  hourly: Daily[]
-  daily: Daily[]
-  weekly: Daily[]
-  monthly: Daily[]
-  yearly: Yearly[]
+  hourly: ChartData[]
+  daily: ChartData[]
+  weekly: ChartData[]
+  monthly: ChartData[]
+  yearly: ChartData[]
 }
 
-export interface Daily {
+export interface ChartData {
   x: string
   y: number
   y_ar: number
@@ -50,12 +50,20 @@ export interface Daily {
   y_fil: number
 }
 
-export interface Yearly {
-  x: number
-  y_ar: number
-  y_en: number
-  y_fr: number
-  y_ur: number
-  y_fil: number
-  y?: number
+export interface RevenueGraphResponse {
+  status: boolean
+  message: string
+  data: {
+    graph: {
+      hourly: ChartData[]
+      daily: ChartData[]
+      weekly: ChartData[]
+      monthly: ChartData[]
+      yearly: ChartData[]
+    }
+  }
+  guard: string
+  errors: null
+  response_code: number
+  request_body: null
 }

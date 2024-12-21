@@ -1,12 +1,13 @@
-import { LineChart } from "@mantine/charts"
-import { Divider, Group, Paper, SegmentedControl, SimpleGrid, Stack, Text } from "@mantine/core"
+import { BarChart, DonutChart, LineChart } from "@mantine/charts"
+import { Divider, Group, Paper, SegmentedControl, Select, SimpleGrid, Stack, Text } from "@mantine/core"
 import { useSuspenseQueries } from "@tanstack/react-query"
 import { CircleDollarSign, GraduationCap, Users } from "lucide-react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { GetGeneralStatistics } from "./get-general-statistics"
 import { GetUserGraph } from "./get-user-graph"
-import { GeneralStatisticsResponse, UserGraphResponse } from "./types"
+import { GeneralStatisticsResponse, RevenueGraphResponse, UserGraphResponse } from "./types"
+import { GetRevenueGraph } from "./get-revenue-graph"
 
 const generalStatistics = [
   {
@@ -25,6 +26,8 @@ const generalStatistics = [
     unit: null,
   },
 ] as const
+
+const GraphType = ["hourly", "daily", "weekly", "monthly", "yearly"] as const
 
 const DataCell = ({
   keyToRender,
@@ -61,24 +64,30 @@ const Home = () => {
         queryKey: ["home", "userGraph"],
         queryFn: GetUserGraph,
       },
+      {
+        queryKey: ["home", "revenueGraph"],
+        queryFn: GetRevenueGraph,
+      },
     ],
   })
 
   const generalStatisticsQuery = queries[0]
   const userGraphQuery = queries[1]
+  const revenueGraphQuery = queries[2]
 
   // group type
-  const [type, setType] = useState<keyof UserGraphResponse["data"]["graph"]>("weekly")
+  const [type, setType] = useState<(typeof GraphType)[number]>("weekly")
+  const [revenueGraphType, setRevenueGraphType] = useState<(typeof GraphType)[number]>("monthly")
   return (
-    <Stack>
-      <SimpleGrid cols={{ base: 1, md: 3 }}>
+    <Stack gap={"lg"}>
+      <SimpleGrid spacing="lg" cols={{ base: 1, md: 3 }}>
         {generalStatistics.map((e) => {
           return <DataCell key={e.key} keyToRender={e} statistics={generalStatisticsQuery.data} />
         })}
       </SimpleGrid>
       <Paper component={Stack} gap={"lg"} p="lg" radius="md">
         <Group justify="space-between">
-          <Text size="lg" fw={500}>
+          <Text size="lg" fw={600}>
             {t("home.user-graph.title")}
           </Text>
           <SegmentedControl
@@ -86,15 +95,15 @@ const Home = () => {
             onChange={(value) => setType(value as keyof UserGraphResponse["data"]["graph"])}
             data={[
               {
-                label: t("home.user-graph.weekly"),
+                label: t("home.graph-type.weekly"),
                 value: "weekly",
               },
               {
-                label: t("home.user-graph.monthly"),
+                label: t("home.graph-type.monthly"),
                 value: "monthly",
               },
               {
-                label: t("home.user-graph.yearly"),
+                label: t("home.graph-type.yearly"),
                 value: "yearly",
               },
             ]}
@@ -120,6 +129,60 @@ const Home = () => {
           />
         </div>
       </Paper>
+      <Group align="stretch" wrap="nowrap" className="max-sm:!flex-col-reverse" gap={"lg"}>
+        <Paper component={Stack} gap={"lg"} className="max-sm:w-full" p="lg" shadow="sm" radius="md">
+          <Group justify="space-between">
+            <Text size="lg" fw={600}>
+              {t("home.certificates-statistics.title")}
+            </Text>
+          </Group>
+          <Divider color="gray.1" />
+          <Group justify="center" px={"xl"} align="center" h={"100%"}>
+            <DonutChart
+              size={142}
+              thickness={18}
+              strokeWidth={0}
+              withTooltip={false}
+              chartLabel="Users by country"
+              data={[
+                { name: "USA", value: 400, color: "#E1CDFE" },
+                { name: "India", value: 300, color: "#96E9EA" },
+              ]}
+            />
+          </Group>
+          <Group></Group>
+        </Paper>
+        <Paper component={Stack} gap={"lg"} p="lg" className="grow" radius="md">
+          <Group justify="space-between">
+            <Text size="lg" fw={600}>
+              {t("home.revenue-graph.title")}
+            </Text>
+            <Select
+              size="sm"
+              value={revenueGraphType}
+              onChange={(value) => setRevenueGraphType(value as (typeof GraphType)[number])}
+              className="max-w-32"
+              variant="filled"
+              data={GraphType.map((value) => {
+                return {
+                  label: t(`home.graph-type.${value}`),
+                  value: value,
+                }
+              })}
+            />
+          </Group>
+          <Divider color="gray.1" />
+          <BarChart
+            h={210}
+            data={revenueGraphQuery["data"][revenueGraphType]}
+            dataKey={"x"}
+            series={[{ name: "y", label: t("home.revenue-graph.y-axis-label"), color: "#18BDBE" }]}
+            barProps={{ radius: [10, 10, 0, 0] }}
+            tickLine="y"
+            yAxisLabel={t("home.revenue-graph.y-axis-label")}
+          />
+        </Paper>
+      </Group>
     </Stack>
   )
 }
