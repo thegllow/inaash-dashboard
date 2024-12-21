@@ -83,6 +83,13 @@
       "total_users": "إجمالي المستخدمين",
       "total_revenue": "إجمالي الإيرادات",
       "total_certificates": "إجمالي الشهادات"
+    },
+    "user-graph": {
+      "title": "إجمالي المستخدمين باللغات",
+      "monthly": "شهري",
+      "weekly": "اسبوعي",
+      "yearly": "سنوي",
+      "y-axis-label": "المستخدمين النشطين"
     }
   },
   "coupons": {

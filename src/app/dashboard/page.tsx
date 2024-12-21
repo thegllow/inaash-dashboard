@@ -1,9 +1,12 @@
-import { Group, Paper, SimpleGrid, Stack, Text } from "@mantine/core"
-import { useSuspenseQuery } from "@tanstack/react-query"
+import { LineChart } from "@mantine/charts"
+import { Divider, Group, Paper, SegmentedControl, SimpleGrid, Stack, Text } from "@mantine/core"
+import { useSuspenseQueries } from "@tanstack/react-query"
 import { CircleDollarSign, GraduationCap, Users } from "lucide-react"
+import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { GetGeneralStatistics } from "./get-general-statistics"
-import { GeneralStatisticsResponse } from "./types"
+import { GetUserGraph } from "./get-user-graph"
+import { GeneralStatisticsResponse, UserGraphResponse } from "./types"
 
 const generalStatistics = [
   {
@@ -50,17 +53,73 @@ const DataCell = ({
 }
 
 const Home = () => {
-  const { data } = useSuspenseQuery({
-    queryKey: ["home", "generalStatistics"],
-    queryFn: GetGeneralStatistics,
+  const { t } = useTranslation()
+  const queries = useSuspenseQueries({
+    queries: [
+      { queryKey: ["home", "generalStatistics"], queryFn: GetGeneralStatistics },
+      {
+        queryKey: ["home", "userGraph"],
+        queryFn: GetUserGraph,
+      },
+    ],
   })
+
+  const generalStatisticsQuery = queries[0]
+  const userGraphQuery = queries[1]
+
+  // group type
+  const [type, setType] = useState<keyof UserGraphResponse["data"]["graph"]>("weekly")
   return (
     <Stack>
       <SimpleGrid cols={{ base: 1, md: 3 }}>
         {generalStatistics.map((e) => {
-          return <DataCell key={e.key} keyToRender={e} statistics={data} />
+          return <DataCell key={e.key} keyToRender={e} statistics={generalStatisticsQuery.data} />
         })}
       </SimpleGrid>
+      <Paper component={Stack} gap={"lg"} p="lg" radius="md">
+        <Group justify="space-between">
+          <Text size="lg" fw={500}>
+            {t("home.user-graph.title")}
+          </Text>
+          <SegmentedControl
+            value={type}
+            onChange={(value) => setType(value as keyof UserGraphResponse["data"]["graph"])}
+            data={[
+              {
+                label: t("home.user-graph.weekly"),
+                value: "weekly",
+              },
+              {
+                label: t("home.user-graph.monthly"),
+                value: "monthly",
+              },
+              {
+                label: t("home.user-graph.yearly"),
+                value: "yearly",
+              },
+            ]}
+          />
+        </Group>
+        <Divider color="gray.1" />
+        <div>
+          <LineChart
+            h={300}
+            data={userGraphQuery["data"][type]}
+            dataKey={"x"}
+            withLegend
+            yAxisLabel={t("home.user-graph.y-axis-label")}
+            series={[
+              { name: "y_ar", label: t("langs.ar"), color: "#18BDBE" },
+              { name: "y_en", label: t("langs.en"), color: "#F16238" },
+              { name: "y_ur", label: t("langs.ur"), color: "#9156E6" },
+              { name: "y_fr", label: t("langs.fr"), color: "#3E4142" },
+              { name: "y_fil", label: t("langs.fil"), color: "#4642E7" },
+              { name: "y_id", label: t("langs.id"), color: "yellow.5" },
+            ]}
+            curveType="monotone"
+          />
+        </div>
+      </Paper>
     </Stack>
   )
 }
