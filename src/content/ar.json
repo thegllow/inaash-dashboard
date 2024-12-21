@@ -78,6 +78,13 @@
       "manage-site": "إدارة الموقع"
     }
   },
+  "home": {
+    "statistics": {
+      "total_users": "إجمالي المستخدمين",
+      "total_revenue": "إجمالي الإيرادات",
+      "total_certificates": "إجمالي الشهادات"
+    }
+  },
   "coupons": {
     "title": "الخصومات والعروض الترويجية",
     "add-button": "اضافة جديد",

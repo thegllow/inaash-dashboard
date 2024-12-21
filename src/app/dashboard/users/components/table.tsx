@@ -60,7 +60,7 @@ const TableCom = () => {
           <Table.Tbody>
             {status === "error" ? <Error error={error} /> : null}
             {status === "success"
-              ? data.data.map((user) => (
+              ? data.items.data.map((user) => (
                   <Table.Tr key={user.id}>
                     <Table.Td>{user.id}</Table.Td>
                     <Table.Td>{user.full_name}</Table.Td>
@@ -121,7 +121,7 @@ const TableCom = () => {
           </Table.Tbody>
         </Table>
       </Table.ScrollContainer>
-      <PaginationCom last_page={data?.meta.last_page} />
+      <PaginationCom last_page={data?.items.meta.last_page} />
     </>
   )
 }

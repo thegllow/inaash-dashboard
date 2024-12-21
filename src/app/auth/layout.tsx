@@ -6,9 +6,7 @@ import { getSession } from "@/utils/get-session"
 export default function AuthLayout() {
   const whiteList = ["/auth/reset-password"]
   const pathname = usePathname()
-  const session = getSession()
-  console.log("🚀 ~ AuthLayout ~ session:", session)
-  if (session?.token && !whiteList.includes(pathname)) {
+  if (getSession()?.token && !whiteList.includes(pathname)) {
     return <Navigate to="/dashboard" replace />
   }
   return (

@@ -7,6 +7,7 @@ import { GetCoupons } from "../coupons/get-coupons"
 import UserModal from "./components/user-modal"
 import Filters from "./components/filters"
 import TableCom from "./components/table"
+import { GetUsers } from "./get-users"
 
 const Users = () => {
   const { t } = useTranslation()
@@ -26,7 +27,7 @@ const Users = () => {
       <Group justify="space-between" gap={"lg"} wrap="nowrap">
         <SearchInput />
         <Group wrap="nowrap">
-          <ExportButton queryFun={GetCoupons} />
+          <ExportButton queryFun={GetUsers} filename="users" />
           <Filters />
         </Group>
       </Group>

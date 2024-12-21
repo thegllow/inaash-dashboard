@@ -25,7 +25,7 @@ module.exports = {
       },
       colors: {
         primary: "var(--mantine-color-primary-7)",
-        secondary: "var(--mantine-color-secondary-7)",
+        secondary: "var(--mantine-color-secondary-8)",
       },
     },
   },
